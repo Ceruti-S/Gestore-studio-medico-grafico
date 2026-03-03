@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+APPUNTI PER I FILE DI SALVATAGGIO
+
+tutti i dati sono salvati in file binari .dat cifrati con AES, per fare in modo che si possano salvare tutte le visite/esami/terapie salvo ogni singolo paziente/medico/ecc...
+in un nuovo file in modo da poter recuperare le informazioni tramite CODICE UNIVOCO DI SISTEMA che verrà abbinato al nome del file della relativa persona. 
+Ogni paziente nel suo
+file oltre alle informazioni di base (come tutti) avrà anche salvati le relative visite ecc.. passate o prenotate, la segretaria per vedere il calendario per poter far 
+prenotare visite ecc.. leggerà tutti i file dei pazienti per sapere che medici e in che data sono liberi. 
+Inoltre ogni medico nel suo file avrà salvati i suoi appuntamenti futuri con dei pazienti e anche i passati(solo riferimento a paziente e appuntamento per entrabi i casi). 
+PER FARE IN MODO CHE QUESTO SISTEMA FUNZIONI OGNI PERSONA AVRA' UN CODICE UNICO DI SISTEMA CHE INIZIERA' PER M(medico), P(paziente), S(segretario), A(amministratore),
+I(IT) e continuerà con un numero seriale che parte da 0 e aumenta e ogni visita ecc.. avrà anche lei il suo codice formato da codice_della_persona + _ + V(visita)/
+E(esame)/T(terapia) + n_della_visita 
+(es: paziente(primo paziente registrato): Samuele Ceruti, id: P0, id visita(prima visita registrata per questo paziente), P0_V0) anche se il codice della visita ecc.. 
+sarà salvato dentro il file del paziente ha bisogno di un codice univoco comunque per permettere l'individiazione successiva.
+Per crittografare i file userò diverse classi, una per crittografare, una per decrittografare mentre per creare/scrivere i file userò altre classi che interagiranno
+con le classi del funzionamento effettivo del backend dell'app che a loro volta interagiranno prendendo i dati dal codice del frontend.
+
+Bisogna implementare anche un backup per i file di salvataggio e un metodo che prima ancora di far partire il programma controlla che i file nel backup e i file veri coincidano e nel caso non lo facessero
+correggesse quello che risulta sbagliato.
+
+procedura scrittura/lettura file:
+scrittura: prendo i dati(map/oggetti) - serializzo - > byte[] - converto in stringa base64 - > String base 64 - cripto - > byte[] - - > scrivo sul file
+lettura: prendo i dati dal file(sono in byte[] serializzati e criptati) - decripto - >Sting base64 - base64 decode - > byte[](serializzati ma non criptati) - deserializzo - > String
+
+il CUI (codice unido identificativo di sistema) è formato da tipoUtente(M/P/I/ecc..)+quelloCheSiVuole
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
