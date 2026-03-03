@@ -1,0 +1,26 @@
+public static void stampaTuttiLog() {
+    Path file = ConfigFile.LOG_FILE;
+
+    try {
+        // 1. Carichiamo la lista completa dal file cifrato
+        ArrayList<Log> listaLogs = LetturaFile.leggiFileCifrato(file);
+
+        if (listaLogs == null || listaLogs.isEmpty()) {
+            System.out.println("Cronologia log vuota.");
+            return;
+        }
+
+        System.out.println("=== CRONOLOGIA LOG DI SISTEMA ===");
+
+        // 2. Iteriamo sulla lista e stampiamo ogni oggetto
+        // Il metodo toString() che hai scritto farà il resto
+        for (Log l : listaLogs) {
+            System.out.print(l.toString());
+        }
+
+        System.out.println("=================================");
+
+    } catch (Exception e) {
+        System.err.println("Errore durante la lettura dei log: " + e.getMessage());
+    }
+}
