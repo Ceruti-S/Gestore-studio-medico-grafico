@@ -1,0 +1,211 @@
+Legenda: 
+D = directory(cartella)
+F = file
+NOTA: i file importanti sono solo quelli dentro al src, tutti gli altri possono variare da pc a pc ma non sono significativi.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Schema fisico cartelle/file del progetto: 
+D-Gestore studio medico grafico
+|
+|---D-.idea
+|    |
+|    |---D-inspectionProfiles
+|    |   |
+|    |   |---F-Project_Default.xml
+|    |
+|    |---F-.gitignore
+|    |
+|    |---F-compiler.xml
+|    |
+|    |---F-encodings.xml
+|    |
+|    |---F-jarRepositories.xml
+|    |
+|    |---F-misc.xml
+|    |
+|    |---F-vcs.xml
+|    |
+|    |---F-workspace.xml
+|    |
+|    |---F-StudioMedicoGrafico.iml
+|
+|---D-.mvn
+|    |
+|    |---D-wrapper
+|        |
+|        |---F-maven-wrapper.jar
+|        |
+|        |---F-maven-wrapper.properties
+|
+|---D-codiceTest
+|   |
+|   |---D-backend
+|   |   |
+|   |   |---F-testManomissioneLog.java
+|   |   |
+|   |   |---F-testStampaLog (console).txt
+|   |
+|   |---F-info.txt
+|
+|---D-data
+|     |
+|     |---D-backup
+|     |   |
+|     |   |---D-amministratori_backup
+|     |   |   |
+|     |   |   |---F-1 FILE PER OGNI AMMINISTRATORE CHE SI CREA (cifrati con AES)
+|     |   |    
+|     |   |---D-IT_backup
+|     |   |   |
+|     |   |   |---F-1 FILE PER OGNI IT CHE SI CREA (cifrati con AES)
+|     |   |
+|     |   |---D-medici_backup
+|     |   |   |
+|     |   |   |---F-1 FILE PER OGNI MEDICO CHE SI CREA (cifrati con AES)
+|     |   |
+|     |   |---D-pazienti_backup
+|     |   |   |
+|     |   |   |---F-1 FILE PER OGNI PAZIENTE CHE SI CREA (cifrati con AES)
+|     |   |
+|     |   |---D-segretari_backup
+|     |   |   |
+|     |   |   |---F-1 FILE PER OGNI SEGRETARIO CHE SI CREA (cifrati con AES)
+|     |   |
+|     |   |---F-contatori_backup.dat (cifrato con AES)
+|     |   |
+|     |   |---F-credenzialiApp_backup.dat (cifrato con AES)
+|     |   |
+|     |   |---F-log_backup.dat (cifrato con AES)
+|     |
+|     |---D-file
+|         |
+|         |---D-amministratori
+|         |   |
+|         |   |---F-1 FILE PER OGNI AMMINISTRATORE CHE SI CREA (cifrati con AES)
+|         |    
+|         |---D-IT
+|         |   |
+|         |   |---F-1 FILE PER OGNI IT CHE SI CREA (cifrati con AES)
+|         |
+|         |---D-medici
+|         |   |
+|         |   |---F-1 FILE PER OGNI MEDICO CHE SI CREA (cifrati con AES)
+|         |
+|         |---D-pazienti
+|         |   |
+|         |   |---F-1 FILE PER OGNI PAZIENTE CHE SI CREA (cifrati con AES)
+|         |
+|         |---D-segretari
+|         |   |
+|         |   |---F-1 FILE PER OGNI SEGRETARIO CHE SI CREA (cifrati con AES)
+|         |
+|         |---F-contatori.dat (cifrato con AES)
+|         |
+|         |---F-credenzialiApp.dat (cifrato con AES)
+|         |
+|         |---F-log.dat (cifrato con AES)
+|
+|---D-src
+|    |
+|    |---D-main
+|        |
+|        |---D-java
+|        |    |
+|        |    |---D-com
+|        |    |    |
+|        |    |    |---D-studioMedico
+|        |    |        |
+|        |    |        |---D-GCM
+|        |    |            |
+|        |    |            |---D-backend
+|        |    |            |   |
+|        |    |            |   |---D-funzionamento
+|        |    |            |   |   |   |
+|        |    |            |   |   |   |---D-oggettiModello
+|        |    |            |   |   |       |
+|        |    |            |   |   |       |---F-Esame.java
+|        |    |            |   |   |       |
+|        |    |            |   |   |       |---F-IT.java
+|        |    |            |   |   |       |
+|        |    |            |   |   |       |---F-Log.java
+|        |    |            |   |   |       |
+|        |    |            |   |   |       |---F-Medico.java
+|        |    |            |   |   |       |
+|        |    |            |   |   |       |---F-Paziente.java
+|        |    |            |   |   |       |
+|        |    |            |   |   |       |---F-Persona.java
+|        |    |            |   |   |       |
+|        |    |            |   |   |       |---F-Segretario.java
+|        |    |            |   |   |       |
+|        |    |            |   |   |       |---F-Terapia.java
+|        |    |            |   |   |       |
+|        |    |            |   |   |       |---F-Visita.java
+|        |    |            |   |   |       |
+|        |    |            |   |   |       |---F-Amministratore.java
+|        |    |            |   |   |
+|        |    |            |   |   |---F-MainClass.java
+|        |    |            |   |   |
+|        |    |            |   |   |---F-ControlloLogin.java
+|        |    |            |   |   |
+|        |    |            |   |   |---F-ValidatoreDati.java
+|        |    |            |   |   |
+|        |    |            |   |   |---F-CreazioneEliminazionePersone.java
+|        |    |            |   |
+|        |    |            |   |---D-gestioneFile
+|        |    |            |       |
+|        |    |            |       |---D-crittografia
+|        |    |            |       |   |
+|        |    |            |       |   |---F-PasswordUtils.java
+|        |    |            |       |   |
+|        |    |            |       |   |---F-CrittografiaFile.java
+|        |    |            |       |
+|        |    |            |       |---D-modifica
+|        |    |            |       |   |
+|        |    |            |       |   |---F-ControlloDatiIniziale.java
+|        |    |            |       |   |
+|        |    |            |       |   |---F-CostruttorePath.java
+|        |    |            |       |   |
+|        |    |            |       |   |---F-CreazioneEliminazioneFile.java
+|        |    |            |       |   |
+|        |    |            |       |   |---F-HealingFile.java
+|        |    |            |       |   |
+|        |    |            |       |   |---F-LetturaFile.java
+|        |    |            |       |   |
+|        |    |            |       |   |---F-ScritturaFile.java
+|        |    |            |       |
+|        |    |            |       |---F-ConfigFile.java
+|        |    |            |       |
+|        |    |            |       |---F-InitFileSystem.java
+|        |    |            |       |
+|        |    |            |       |---F-ConfigFile_backup.java
+|        |    |            |       |
+|        |    |            |       |---F-InitFileSystem_backup.java
+|        |    |            |
+|        |    |            |---D-frontend
+|        |    |            |   |
+|        |    |            |   |---F-SchermataLogin.java
+|        |    |            |   |
+|        |    |            |   |---F-SchermataMenuIT.java
+|        |    |
+|        |    |---F-module-info.java
+|        |
+|        |---D-resources
+|
+|---D-target
+|   |
+|   |---D-classes
+|   |   |
+|   |   |---D/F-STESSA STUTTURA DEL SOURCE MA CON I FILE COMPILATI
+|   |
+|   |---D-generated-sources
+|       |
+|       |---D-annotation
+|
+|---F-.gitignore
+|
+|---F-mvnw
+|
+|---F-mvnw.cmd
+|
+|---F-pom.xml
+|
+|---F-qodana.yaml
