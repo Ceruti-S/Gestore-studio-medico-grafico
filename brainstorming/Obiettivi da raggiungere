@@ -1,0 +1,13 @@
+Creare un'applicazione con javaFX su intellij che permetta la gestione di uno studio medico, nello specifico deve permermettere di:
+1) Salvare i dati su file, in modo da tenere memoria di tutti i dati inseriti
+2) Creare/eliminare utenti di tipo "Medico", "Segretario", "Amministrazione", "IT support" (dopo si specifica chi può fare cosa)
+3) Avere una schermata di login funzionante
+4) Permettere di inserire appuntamenti, gestire pazienti/medici/cartelle mediche/visite/terapie/esami anche con barra di ricerca, sistema di gestione delle ricette (dopo si specifica chi può fare cosa)
+5) Avere una grafica user friendly facile da usare
+6) avere un file di log dove si segna ogni azione che ognuno fa
+
+Specifiche di chi può fare cosa:
+Medici: possono modificare cartella medica compreso visite/esami/terapie ma può fissare appuntamenti solo a suo nome, può fare ricette che poi il paziente usa col segretario per prendere appuntamenti
+Segretario: può fissare/modificare appuntamenti con o anche senza ricetta del medico, senza ricetta ristretto alle cosa che non hanno obbligo di ricetta, può aggiungere pazienti e modificare info personali
+Amministrazione: può gestire la lista medici/segretari/pazienti/IT support, pazeinti limitato a aggiungere/eliminare/modificare info personali ma no visite/esami/terapie
+IT support: ha accesso a tutto ed è l'unico che può aggiungere amministratori, però si limita a attività di manutenzione se necessario
