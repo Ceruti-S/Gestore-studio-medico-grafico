@@ -1,0 +1,53 @@
+PER FARE TUTTO QUESTO BISOGNA ESSERE DENTRO COME COLLABORATOR NELLA REPOSITORY DI GITHUB
+
+------------------------------------------------------------------------------------
+
+collegare github a intelliJ (solo per la prima volta):
+1) Aprire intelliJ, andare su settings -> version control -> github
+2) Clicca il tasto + e seleziona log via github
+3) Si apre il browser, effettua il login e autorizza intelliJ
+
+------------------------------------------------------------------------------------
+
+configurare GitHub su intelliJ (solo per la prima volta):
+1) Aprire il terminale di intelliJ (in basso a sinistra)
+2) Scrivere questi 2 comandi, uno alla volta: 
+git config --global user.name "IlTuoNomeUtenteGitHub"
+git config --global user.email "latua@email.com"
+
+------------------------------------------------------------------------------------
+
+scaricare il progetto sul proprio pc (solo per la prima volta):
+1) Aprire intelliJ nella schermata iniziale, cliccate Get From VCS (oppure File -> New -> Project from Version Control)
+2) A sinistra selezionate github
+3) Cerca nella lista AyyRush/StudioMedicoGrafico e clicca Clone
+4) IntelliJ scarica tutto e configura la cartella src, i pacchetti e le dipendenze da solo
+
+------------------------------------------------------------------------------------
+
+FLUSSO DI LAVORO QUOTIDIANO:
+
+fase A, prima di iniziare (pull): 
+1) Vai nel menù git su intelliJ, clicca pull (se qualcuno a caricato del codice nuovo si mette in quello che si ha già)
+
+fase B, lavoro (work): 
+1) Scrivi tutto il codice java che vuoi (modificando solo cose che ti solo di competenza)
+2) I file nuovi che crei diventano verdi, quelli che modifichi blu
+
+fase C, carica il lavoro (push):
+1) Commit: clicca Ctrl+K
+1.2) Seleziona i file che vuoi caricare (di solito tutti, apparte in casi eccezzionali)
+1.3) Scrivi un messaggio chiaro su quello che hai fatto
+1.4) Clicca commit
+2) Push: clicca Ctrl+Shift+K
+2.1) Controlla che sia tutto ok e clicca Push, il tuo codice ora è online per tutti
+
+------------------------------------------------------------------------------------
+
+Regole per non fare danni:
+1) Non fare Push se il codice non compila, tranne in casi particolari e documentati
+2) Se IntelliJ ti dice "Merge Conflict" durante un Pull, significa che tu e un tuo compagno avete modificato la stessa riga. IntelliJ aprirà una finestra a tre colonne:
+  A sinistra il tuo codice, a destra quello del compagno, al centro il risultato finale.
+  Dovrai scegliere quali righe tenere cliccando sulle freccette (<< o >>). Per decidere quale tenere chiamare/scrivere alla persona che l'ha modificato e decidere quale tenere.
+3) Mai toccare il file .gitignore.
+4) Se bisogna lavorare su problemi condivisi o toccare file insieme a un'altra persona fare una sessione di code together e poi solo uno dei due/tre pusha le modifiche su github, citando con chi ha lavorato.
