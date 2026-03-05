@@ -1,7 +1,8 @@
-# Ignora tutto ciò che non è codice (librerie, wrapper, ecc.)
+# 1. Forza GitHub a ignorare TUTTO il resto del repository (pom.xml, .idea, wrapper, ecc.)
 * linguist-vendored=true
+* linguist-documentation=true
 
-# Forza l'inclusione separata per ogni tipo di file
+# 2. Forza l'inclusione solo di Java, CSS e FXML
 *.java linguist-vendored=false linguist-detectable=true
 *.css  linguist-vendored=false linguist-detectable=true
 *.fxml linguist-vendored=false linguist-detectable=true
