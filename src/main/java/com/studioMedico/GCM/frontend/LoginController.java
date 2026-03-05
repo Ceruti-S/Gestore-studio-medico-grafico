@@ -73,6 +73,7 @@ public class LoginController {
             // Portiamo il focus e il cursore alla fine
             txtPassword.requestFocus();
             txtPassword.end();
+
         }
 
     }
