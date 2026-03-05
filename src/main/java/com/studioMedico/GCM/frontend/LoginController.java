@@ -58,7 +58,8 @@ public class LoginController {
             // Portiamo il focus e il cursore alla fine
             txtPasswordInChiaro.requestFocus();
             txtPasswordInChiaro.end();
-        } else {
+        }
+        else {
             // Torniamo ai pallini
             txtPassword.setText(txtPasswordInChiaro.getText());
 
