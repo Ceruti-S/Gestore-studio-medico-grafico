@@ -1,6 +1,6 @@
 # Reset totale: ignora tutto
-* linguist-vendored=true
-* linguist-documentation=true
+* linguist-vendored=false
+* linguist-documentation=false
 
 # Eccezioni: forza il rilevamento dei tuoi file
 *.java linguist-vendored=false linguist-detectable=true
