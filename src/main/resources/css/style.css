@@ -1,0 +1,41 @@
+/* Sfondo della finestra */
+.main-container {
+    -fx-background-color: #f0f4f7;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* Titolo principale */
+.title-label {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 0 0 10 0;
+}
+
+/* Stilizzazione dei campi di testo */
+.text-field, .password-field {
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: #bdc3c7;
+    -fx-padding: 8;
+}
+
+/* Pulsante di Login */
+.login-button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+}
+
+.login-button:hover {
+    -fx-background-color: #2980b9;
+}
+
+/* Etichetta di stato (errori) */
+.status-label {
+    -fx-text-fill: #e74c3c;
+    -fx-font-size: 12px;
+}
