@@ -1,8 +1,8 @@
-# 1. Forza GitHub a ignorare TUTTO il resto del repository (pom.xml, .idea, wrapper, ecc.)
+# Reset totale: ignora tutto
 * linguist-vendored=true
 * linguist-documentation=true
 
-# 2. Forza l'inclusione solo di Java, CSS e FXML
+# Eccezioni: forza il rilevamento dei tuoi file
 *.java linguist-vendored=false linguist-detectable=true
 *.css  linguist-vendored=false linguist-detectable=true
 *.fxml linguist-vendored=false linguist-detectable=true
