@@ -1,0 +1,7 @@
+# 1. Ignora tutto di default dal calcolo delle statistiche
+* linguist-vendored=true
+
+# 2. Forza l'inclusione solo dei file che ti interessano
+*.java linguist-vendored=false linguist-detectable=true
+*.fxml linguist-vendored=false linguist-detectable=true linguist-language=Java
+*.css linguist-vendored=false linguist-detectable=true
