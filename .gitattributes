@@ -3,5 +3,5 @@
 
 # 2. Forza l'inclusione solo dei file che ti interessano
 *.java linguist-vendored=false linguist-detectable=true
-*.fxml linguist-vendored=false linguist-detectable=true linguist-language=Java
+*.fxml linguist-vendored=false linguist-detectable=true
 *.css linguist-vendored=false linguist-detectable=true
