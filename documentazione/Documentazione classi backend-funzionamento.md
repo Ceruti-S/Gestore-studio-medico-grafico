@@ -593,40 +593,42 @@ La logica di creazione segue un processo in due step:
 
 ## Classe: MainClass.java
 
-**Tipo**: Entry Point / Controller del Ciclo di Vita
+**Tipo**: Entry Point JavaFX / Controller del Ciclo di Vita
 
 ### Funzionamento
-Questa classe rappresenta il punto di ingresso dell'intera applicazione. Gestisce l'avvio del sistema, l'inizializzazione del filesystem, il processo di autenticazione e il controllo dell'integrità dei dati. È progettata per gestire tre scenari principali:
-1. **Primo Avvio**: Inizializzazione automatica delle directory e dei file necessari (compresi quelli di backup).
-2. **Accesso Standard**: Verifica delle credenziali, controllo di integrità dei dati (Self-Healing) e reindirizzamento al menù specifico dell'utente.
-3. **Recovery Mode**: Accesso limitato alle funzioni di riparazione del sistema per gli amministratori IT.
-
-
+Questa classe rappresenta il punto di ingresso dell'intera applicazione grafica. Estendendo `javafx.application.Application`, gestisce l'avvio del sistema UI, l'inizializzazione del filesystem, il processo di autenticazione visiva e il controllo dell'integrità dei dati. È progettata per gestire tre scenari principali:
+1. **Primo Avvio**: Inizializzazione automatica delle directory e dei file necessari (compresi quelli di backup) in caso di assenza delle credenziali.
+2. **Accesso Standard**: Avvio della GUI di login (`SchermataLoginUI`), verifica delle credenziali, controllo di integrità dei dati (Self-Healing) con annesso logging, e reindirizzamento al menù specifico dell'utente.
+3. **Recovery Mode**: Accesso deviato verso le funzioni di riparazione del sistema per gli amministratori IT.
 
 ### Metodi
 
 #### `public static void main(String[] args)`
-* **Descrizione**: Punto di ingresso standard della JVM. Invoca `lancioIniziale()`.
+* **Descrizione**: Punto di ingresso standard della JVM. Invoca il metodo `launch(args)` di JavaFX per far partire il thread grafico.
 
-#### `private static void lancioIniziale() throws IOException`
-* **Descrizione**: Coordina la sequenza di boot dell'applicazione.
+#### `public void start(Stage primaryStage) throws IOException`
+* **Descrizione**: Metodo core del ciclo di vita di JavaFX. 
+* **Logica**: Viene richiamato in automatico dopo il `launch`. Riceve lo `Stage` principale (la finestra base) e invoca `lancioIniziale(primaryStage)` passandogli il controllo della GUI.
+
+#### `private void lancioIniziale(Stage stage) throws IOException`
+* **Descrizione**: Coordina la sequenza di boot dell'applicazione e il ciclo visivo di login.
 * **Logica**:
-    1. **Check Filesystem**: Se i file delle credenziali (principale e backup) sono assenti, invoca `InitFileSystem` e `InitFileSystem_backup`.
-    2. **Ciclo di Login**: Lancia la `SchermataLogin` in un loop continuo finché l'utente non esegue l'accesso con successo o chiude l'app.
+    1. **Check Filesystem**: Controlla l'esistenza dei file delle credenziali (principale e backup). Se assenti, invoca `InitFileSystem` e `InitFileSystem_backup`.
+    2. **Ciclo di Login JavaFX**: Istanzia `SchermataLoginUI` e la mostra in un loop continuo. Il loop si interrompe solo se l'utente accede con successo (`'S'`) o chiude volontariamente l'app (`'C'`).
     3. **Logging**: Registra l'avvenuto login nel sistema di Log.
     4. **Bivio Operativo**: 
         * Se `ControlloLogin.utenteAttivo` inizia con **"R"**, devia il flusso verso la GUI di Recovery.
-        * Altrimenti, esegue `checkFileIniziale()` e lancia il menù utente tramite `lanciaMenu()`.
+        * Altrimenti, esegue `checkFileIniziale()` per l'integrità e l'avvio standard tramite `lanciaMenu()`.
 
 #### `private static void checkFileIniziale()`
 * **Descrizione**: Garantisce che i dati dell'applicazione siano integri prima di consentire l'uso del software.
-* **Logica**: Invoca `ControlloDatiIniziale.validaDati()` per confrontare i file principali con quelli di backup. In caso di discrepanze, il sistema tenta la correzione automatica. 
+* **Logica**: Invoca `ControlloDatiIniziale.validaDati()`. In caso di successo, registra un log di sistema.
 * **Gestione Errori**: Se il controllo fallisce in modo critico, l'applicazione termina con codice d'uscita **2**.
 
 #### `private static void lanciaMenu()`
-* **Descrizione**: Agisce come dispatcher per le interfacce grafiche.
-* **Logica**: Legge il primo carattere di `utenteAttivo` (M, S, I, A) e avvia la GUI corrispondente al ruolo (Medico, Segretario, IT o Amministratore).
-* **Sicurezza**: Se il tipo utente non è riconosciuto, il sistema termina forzatamente per prevenire accessi non autorizzati (Codice d'uscita **3**).
+* **Descrizione**: Agisce come dispatcher per le interfacce grafiche utente (Dashboard).
+* **Logica**: Legge il primo carattere di `utenteAttivo` (M, S, I, A) e, tramite un costrutto switch, prepara l'avvio della GUI corrispondente al ruolo (Medico, Segretario, IT o Amministratore).
+* **Sicurezza**: Se il tipo utente non è riconosciuto, il sistema stampa un errore fatale e termina forzatamente (Codice d'uscita **3**).
 
 ---
 
