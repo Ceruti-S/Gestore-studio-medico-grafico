@@ -13,7 +13,7 @@ public class LoginController {
     @FXML private CheckBox chkRecovery;
     @FXML private Label lblStatus;
 
-    private char loginResult = 'F';
+    private char loginResult = 'C';
 
     @FXML
     private void gestisciLogin() {
@@ -50,7 +50,10 @@ public class LoginController {
                 lblStatus.setText("Credenziali Errate");
                 loginResult = 'F';
             }
-            default -> lblStatus.setText("Errore imprevisto");
+            default -> {
+                lblStatus.setText("Errore imprevisto");
+                loginResult = 'C';
+            }
         }
     }
 

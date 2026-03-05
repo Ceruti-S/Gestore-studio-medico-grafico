@@ -15,24 +15,20 @@ public class SchermataLoginUI
         try
         {
 
-            //carico il file FXML dalla cartella resources
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
             Parent root = loader.load();
-
-            //ottengo il controller associato al file FXML
             LoginController controller = loader.getController();
 
             Stage loginStage = new Stage();
             loginStage.setTitle("GCM - Login");
-            loginStage.initModality(Modality.APPLICATION_MODAL); // Blocca le altre finestre
+            loginStage.initModality(Modality.APPLICATION_MODAL);
             loginStage.setScene(new Scene(root));
-
-            //applico il CSS
             root.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
 
-            //mostra la finestra e aspetta finché non viene chiusa
-            loginStage.showAndWait();
+            loginStage.setOnCloseRequest(event -> {
+            });
 
+            loginStage.showAndWait();
             return controller.getLoginResult();
 
         }
@@ -40,7 +36,7 @@ public class SchermataLoginUI
         {
 
             e.printStackTrace();
-            return 'F';
+            return 'C'; //In caso di errore esco
 
         }
 
