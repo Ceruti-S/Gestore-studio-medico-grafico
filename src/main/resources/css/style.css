@@ -30,6 +30,22 @@
     -fx-cursor: hand;
 }
 
+.show-hide-button
+{
+
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-padding: 5 10;
+    -fx-cursor: hand;
+
+}
+
+.show-hide-button:hover {
+    -fx-background-color: #2980b9;
+}
+
 .login-button:hover {
     -fx-background-color: #2980b9;
 }

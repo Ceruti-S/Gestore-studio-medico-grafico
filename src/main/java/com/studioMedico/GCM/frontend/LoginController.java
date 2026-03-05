@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 public class LoginController {
 
+    public TextField txtPasswordInChiaro;
     @FXML private TextField txtUsername;
     @FXML private PasswordField txtPassword;
     @FXML private CheckBox chkRecovery;
@@ -18,7 +19,10 @@ public class LoginController {
     @FXML
     private void gestisciLogin() {
         String username = txtUsername.getText().trim();
-        String password = txtPassword.getText();
+
+        // Recupera la password dal campo attualmente attivo
+        String password = txtPassword.isVisible() ? txtPassword.getText() : txtPasswordInChiaro.getText();
+
         boolean recoveryMode = chkRecovery.isSelected();
 
         // 1. Validazione
@@ -34,6 +38,39 @@ public class LoginController {
         } catch (Exception ex) {
             mostraAlert("Errore Critico", "Errore di sistema: " + ex.getMessage());
         }
+
+    }
+
+    @FXML
+    private void cambiaVisibilitaPassword()
+    {
+
+        if (txtPassword.isVisible()) {
+            // Passiamo a visualizzare la password in chiaro
+            txtPasswordInChiaro.setText(txtPassword.getText());
+
+            txtPasswordInChiaro.setVisible(true);
+            txtPasswordInChiaro.setManaged(true);
+            txtPassword.setVisible(false);
+            txtPassword.setManaged(false);
+
+            // Portiamo il focus e il cursore alla fine
+            txtPasswordInChiaro.requestFocus();
+            txtPasswordInChiaro.end();
+        } else {
+            // Torniamo ai pallini
+            txtPassword.setText(txtPasswordInChiaro.getText());
+
+            txtPassword.setVisible(true);
+            txtPassword.setManaged(true);
+            txtPasswordInChiaro.setVisible(false);
+            txtPasswordInChiaro.setManaged(false);
+
+            // Portiamo il focus e il cursore alla fine
+            txtPassword.requestFocus();
+            txtPassword.end();
+        }
+
     }
 
     private void processaEsito(String esito) {

@@ -1,38 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="300" prefWidth="400" spacing="15" styleClass="main-container" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studioMedico.GCM.frontend.LoginController">
+<VBox alignment="CENTER" prefHeight="300" prefWidth="459.0" spacing="15" styleClass="main-container" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studioMedico.GCM.frontend.LoginController">
 
     <padding>
-        <Insets bottom="30" left="30" right="30" top="30" />
+        <Insets bottom="1" left="30" right="30" top="30" />
     </padding>
 
     <Label styleClass="title-label" text="Accesso Studio Medico GCM" />
 
     <GridPane hgap="10" vgap="10">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+        </columnConstraints>
+
         <Label text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
         <TextField fx:id="txtUsername" promptText="es. M1_rossi" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
         <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-        <PasswordField fx:id="txtPassword" prefHeight="26.0" prefWidth="228.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <columnConstraints>
-         <ColumnConstraints />
-         <ColumnConstraints />
-      </columnConstraints>
-      <rowConstraints>
-         <RowConstraints />
-         <RowConstraints />
-      </rowConstraints>
+
+        <StackPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <PasswordField fx:id="txtPassword" prefHeight="26.0" prefWidth="228.0" />
+            <TextField fx:id="txtPasswordInChiaro" managed="false" prefHeight="26.0" prefWidth="228.0" visible="false" />
+        </StackPane>
+
+        <Button mnemonicParsing="false" onAction="#cambiaVisibilitaPassword" styleClass="show-hide-button" text="show/hide" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+        <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+        </rowConstraints>
     </GridPane>
 
     <CheckBox fx:id="chkRecovery" text="Accesso in Recovery Mode" />
@@ -40,4 +50,5 @@
     <Button maxWidth="Infinity" onAction="#gestisciLogin" styleClass="login-button" text="ACCEDI" />
 
     <Label fx:id="lblStatus" styleClass="status-label" />
+    <Group />
 </VBox>
