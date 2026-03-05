@@ -1,8 +1,7 @@
-# Reset totale: ignora tutto
-* linguist-vendored=false
-* linguist-documentation=false
+# 1. Ignora tutto di default dal calcolo delle statistiche
+* linguist-vendored=true
 
-# Eccezioni: forza il rilevamento dei tuoi file
+# 2. Forza l'inclusione solo dei file che ti interessano
 *.java linguist-vendored=false linguist-detectable=true
-*.css  linguist-vendored=false linguist-detectable=true
-*.fxml linguist-vendored=false linguist-detectable=true
+*.fxml linguist-vendored=false linguist-detectable=true linguist-language=Java
+*.css linguist-vendored=false linguist-detectable=true
