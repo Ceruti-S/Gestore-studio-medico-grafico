@@ -1,4 +1,4 @@
-package com.studioMedico.GCM.frontend;
+package com.studioMedico.GCM.frontend.controller;
 
 import com.studioMedico.GCM.backend.funzionamento.ControlloLogin;
 import com.studioMedico.GCM.backend.funzionamento.ValidatoreDati;

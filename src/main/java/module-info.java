@@ -20,5 +20,7 @@ module com.studioMedico.GCM
     // package con il main
     exports com.studioMedico.GCM.backend.funzionamento;
     exports com.studioMedico.GCM.backend.funzionamento.oggettiModello;
+    opens com.studioMedico.GCM.frontend.controller to javafx.fxml;
+    opens com.studioMedico.GCM.frontend.UI to javafx.fxml;
 
 }

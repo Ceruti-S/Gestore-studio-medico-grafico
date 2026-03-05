@@ -6,7 +6,7 @@ import com.studioMedico.GCM.backend.gestioneFile.ConfigFile_backup;
 import com.studioMedico.GCM.backend.gestioneFile.InitFileSystem;
 import com.studioMedico.GCM.backend.gestioneFile.InitFileSystem_backup;
 import com.studioMedico.GCM.backend.gestioneFile.modifica.ControlloDatiIniziale;
-import com.studioMedico.GCM.frontend.SchermataLoginUI; // Usiamo la versione UI di JavaFX
+import com.studioMedico.GCM.frontend.UI.SchermataLoginUI; // Usiamo la versione UI di JavaFX
 
 import java.nio.file.Files;
 import java.nio.file.Path;

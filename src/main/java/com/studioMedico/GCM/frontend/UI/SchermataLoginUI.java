@@ -1,5 +1,6 @@
-package com.studioMedico.GCM.frontend;
+package com.studioMedico.GCM.frontend.UI;
 
+import com.studioMedico.GCM.frontend.controller.LoginController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -23,7 +24,7 @@ public class SchermataLoginUI
             loginStage.setTitle("GCM - Login");
             loginStage.initModality(Modality.APPLICATION_MODAL);
             loginStage.setScene(new Scene(root));
-            root.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
+            root.getStylesheets().add(getClass().getResource("/css/Login.css").toExternalForm());
 
             loginStage.setOnCloseRequest(event -> {
             });

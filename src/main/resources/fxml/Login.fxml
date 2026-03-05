@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefWidth="480.0" spacing="20" styleClass="main-container" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studioMedico.GCM.frontend.LoginController">
+<VBox alignment="CENTER" prefWidth="480.0" spacing="20" styleClass="main-container" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studioMedico.GCM.frontend.controller.LoginController">
 
     <padding>
         <Insets bottom="30" left="40" right="40" top="30" />
