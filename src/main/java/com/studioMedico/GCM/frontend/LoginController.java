@@ -61,6 +61,7 @@ public class LoginController {
         }
         else
         {
+
             // Torniamo ai pallini
             txtPassword.setText(txtPasswordInChiaro.getText());
 
