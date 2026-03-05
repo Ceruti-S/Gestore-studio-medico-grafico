@@ -1,1 +1,0 @@
-# Gestore-studio-medico-grafico
