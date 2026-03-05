@@ -80,6 +80,7 @@ public class LoginController {
 
     private void processaEsito(String esito)
     {
+
         switch (esito) {
             case "login_success", "recovery_login_success" -> {
                 loginResult = 'S';
