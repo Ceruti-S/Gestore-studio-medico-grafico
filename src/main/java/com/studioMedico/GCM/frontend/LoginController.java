@@ -98,6 +98,7 @@ public class LoginController {
                 lblStatus.setText("Errore imprevisto");
                 loginResult = 'C';
             }
+
         }
     }
 
