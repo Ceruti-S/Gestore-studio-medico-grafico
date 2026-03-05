@@ -45,7 +45,8 @@ public class LoginController {
     private void cambiaVisibilitaPassword()
     {
 
-        if (txtPassword.isVisible()) {
+        if (txtPassword.isVisible())
+        {
             // Passiamo a visualizzare la password in chiaro
             txtPasswordInChiaro.setText(txtPassword.getText());
 
