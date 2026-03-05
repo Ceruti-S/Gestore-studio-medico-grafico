@@ -1,0 +1,4 @@
+* linguist-vendored=false
+* linguist-documentation=false
+*.java linguist-detectable=true
+*.fxml linguist-detectable=true
