@@ -1,21 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studioMedico.GCM.frontend.controller.LoginController">
-   <children>
-      <Button layoutX="473.0" layoutY="22.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="101.0" text="Logout" />
-      <Text layoutX="271.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Utente: Segretario" wrappingWidth="147.0" />
-      <TextField layoutX="24.0" layoutY="22.0" prefHeight="26.0" prefWidth="140.0" promptText="Cerca paziente..." />
-      <Button layoutX="182.0" layoutY="22.0" mnemonicParsing="false" text="Cerca" />
+<BorderPane prefHeight="720.0" prefWidth="1100.0" styleClass="main-container" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
 
-      <Line endX="499.0" layoutX="101.0" layoutY="64.0" startX="-100.0" />
-      <Line endX="1.5" endY="288.0" layoutX="101.0" layoutY="112.0" startX="1.5" startY="-47.5" />
+   <top>
+      <VBox style="-fx-background-color: white;">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="70.0" spacing="20.0">
+               <padding>
+                  <Insets left="25.0" right="25.0" />
+               </padding>
+               <children>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <TextField prefWidth="250.0" promptText="Cerca paziente (CUI o Cognome)..." style="-fx-background-radius: 20;" />
+                     <Button styleClass="login-button" text="Cerca" />
+                  </HBox>
 
-      <AnchorPane fx:id="contentArea" layoutX="102.0" layoutY="65.0" prefHeight="337.0" prefWidth="500.0" />
-   </children>
-</AnchorPane>
+                  <Region HBox.hgrow="ALWAYS" />
+
+                  <VBox alignment="CENTER" spacing="2.0">
+                     <Label style="-fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Utente: Segretario" />
+                     <Label style="-fx-font-size: 11px; -fx-text-fill: #7f8c8d;" text="Accesso Standard" />
+                  </VBox>
+
+                  <Region HBox.hgrow="ALWAYS" />
+
+                  <Button styleClass="logout-button" text="logout"
+                          style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 15; -fx-background-radius: 5;" />
+               </children>
+            </HBox>
+
+            <Region prefHeight="3.0" style="-fx-background-color: #34495e;" />
+         </children>
+      </VBox>
+   </top>
+
+   <left>
+      <HBox>
+         <children>
+            <VBox prefWidth="260.0" spacing="15.0" style="-fx-background-color: #f0f4f7;">
+               <padding>
+                  <Insets bottom="20.0" left="15.0" right="15.0" top="30.0" />
+               </padding>
+               <children>
+                  <Label text="PRENOTAZIONI" style="-fx-text-fill: #95a5a6; -fx-font-size: 10px; -fx-font-weight: bold;">
+                     <VBox.margin><Insets left="10.0" /></VBox.margin>
+                  </Label>
+
+                  <Button maxWidth="Infinity" styleClass="menu-button" text="• Fissa Appuntamento" />
+                  <Button maxWidth="Infinity" styleClass="menu-button" text="• Modifica Prenotazione" />
+
+                  <Region prefHeight="10.0" />
+
+                  <Label text="ANAGRAFICA" style="-fx-text-fill: #95a5a6; -fx-font-size: 10px; -fx-font-weight: bold;">
+                     <VBox.margin><Insets left="10.0" /></VBox.margin>
+                  </Label>
+
+                  <Button maxWidth="Infinity" styleClass="menu-button" text="• Aggiungi Nuovo Paziente" />
+                  <Button maxWidth="Infinity" styleClass="menu-button" text="• Modifica Info Personali" />
+
+                  <Region prefHeight="10.0" />
+
+                  <Label text="STRUMENTI" style="-fx-text-fill: #95a5a6; -fx-font-size: 10px; -fx-font-weight: bold;">
+                     <VBox.margin><Insets left="10.0" /></VBox.margin>
+                  </Label>
+                  <Button maxWidth="Infinity" styleClass="menu-button" text="• Agenda Studio" />
+               </children>
+            </VBox>
+
+            <Region prefWidth="3.0" style="-fx-background-color: #34495e;" />
+         </children>
+      </HBox>
+   </left>
+
+   <center>
+      <StackPane fx:id="contentArea" style="-fx-background-color: #ffffff;">
+         <children>
+            <VBox alignment="CENTER" spacing="15.0">
+               <children>
+                  <Label styleClass="title-label" text="GCM Studio" style="-fx-font-size: 32px; -fx-text-fill: #ecf0f1;" />
+                  <Label text="Benvenuto nella console di Segreteria" style="-fx-text-fill: #bdc3c7;" />
+                  <Label maxWidth="400.0" text="Usa il menu a sinistra per gestire le prenotazioni con ricetta medica o i pazienti liberi."
+                         textAlignment="CENTER" wrapText="true" style="-fx-text-fill: #95a5a6; -fx-font-style: italic;" />
+               </children>
+            </VBox>
+         </children>
+      </StackPane>
+   </center>
+</BorderPane>

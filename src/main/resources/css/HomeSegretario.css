@@ -1,0 +1,71 @@
+/* --- SFONDO E CONTENITORE PRINCIPALE --- */
+.main-home-container {
+    -fx-background-color: #f0f4f7; /* Il tuo colore di sfondo */
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* --- TOP BAR --- */
+.top-bar {
+    -fx-background-color: white;
+    -fx-padding: 10 20;
+    -fx-border-color: #bdc3c7;
+    -fx-border-width: 0 0 1 0; /* Linea sottile sotto la top bar */
+}
+
+/* --- SIDEBAR (Sostituisce la linea manuale) --- */
+.sidebar {
+    -fx-background-color: #f0f4f7;
+    -fx-border-color: #bdc3c7;
+    -fx-border-width: 0 1 0 0; /* Questa è la linea verticale del tuo disegno */
+    -fx-padding: 20 10;
+}
+
+/* --- TESTI DINAMICI (Menu laterale) --- */
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #2c3e50; /* Il tuo colore bluastro scuro */
+    -fx-font-size: 15px;
+    -fx-font-weight: normal;
+    -fx-cursor: hand;
+    -fx-alignment: CENTER_LEFT;
+}
+
+/* Effetto Mouse-Over: Cambia colore e grandezza come da tua richiesta */
+.menu-button:hover {
+    -fx-text-fill: #3498db; /* Il tuo blu principale */
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+}
+
+/* --- PULSANTI (Stile Login) --- */
+.action-button, .search-button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.action-button:hover {
+    -fx-background-color: #2980b9;
+}
+
+/* Pulsante Logout (Rosso) */
+.logout-button {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+/* --- CAMPI DI TESTO (Stile Login) --- */
+.text-field {
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: #bdc3c7;
+}
+
+.text-field:focused {
+    -fx-border-color: #3498db;
+}
