@@ -6,6 +6,7 @@ import com.studioMedico.GCM.backend.gestioneFile.ConfigFile_backup;
 import com.studioMedico.GCM.backend.gestioneFile.InitFileSystem;
 import com.studioMedico.GCM.backend.gestioneFile.InitFileSystem_backup;
 import com.studioMedico.GCM.backend.gestioneFile.modifica.ControlloDatiIniziale;
+import com.studioMedico.GCM.frontend.UI.SchermataHomeSegretarioUI;
 import com.studioMedico.GCM.frontend.UI.SchermataLoginUI; // Usiamo la versione UI di JavaFX
 
 import java.nio.file.Files;
@@ -107,6 +108,9 @@ public class MainClass extends Application
                 System.exit(0);
 
         }
+
+        SchermataHomeSegretarioUI homeSegretarioUI = new SchermataHomeSegretarioUI();
+        homeSegretarioUI.mostraHomeSegretario(stage);
 
         Log logTemp = new Log(LocalDateTime.now(), "Sistema", "Utente loggato con successo: " + ControlloLogin.utenteAttivo);
         try
