@@ -48,7 +48,7 @@
 
     <CheckBox fx:id="chkRecovery" text="Accesso in Recovery Mode" />
 
-    <Button maxWidth="Infinity" onAction="#gestisciLogin" styleClass="login-button" text="ACCEDI"/>
+    <Button maxWidth="Infinity" onAction="#gestisciLogin" styleClass="login-button" text="ACCEDI" defaultButton="true"/>
 
     <Label maxWidth="380.0" minHeight="-Infinity"
            text="Se hai dimenticato le credenziali contatta un amministratore di sistema per recuperarle."

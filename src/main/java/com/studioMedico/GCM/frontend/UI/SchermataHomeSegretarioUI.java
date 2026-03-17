@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Screen;
+import javafx.geometry.Rectangle2D;
 
 import java.net.URL;
 
@@ -48,7 +50,15 @@ public class SchermataHomeSegretarioUI {
 
             homeStage.setScene(scene);
 
-            // 6. Mostriamo la finestra
+            // 6. Mostriamo la finestra (Massimizzata)
+            // Impostiamo manualmente le dimensioni dello schermo per garantire l'apertura a tutto schermo
+            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+            homeStage.setX(screenBounds.getMinX());
+            homeStage.setY(screenBounds.getMinY());
+            homeStage.setWidth(screenBounds.getWidth());
+            homeStage.setHeight(screenBounds.getHeight());
+            homeStage.setMaximized(true); 
+            
             homeStage.showAndWait();
 
             // Ritorna il risultato (o 'S' di default se il controller è nullo)

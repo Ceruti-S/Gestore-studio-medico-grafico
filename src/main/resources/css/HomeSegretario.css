@@ -57,6 +57,24 @@
     -fx-font-weight: bold;
     -fx-background-radius: 5;
     -fx-cursor: hand;
+    -fx-border-color: #c0392b;
+    -fx-border-width: 1px;
+    -fx-border-style: solid;
+    -fx-border-radius: 5;
+}
+
+/* Pulsante Logout (Rosso) */
+.logout-button:hover {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+    -fx-font-size: 17px;
+    -fx-border-color: #c0392b;
+    -fx-border-width: 1px;
+    -fx-border-style: solid;
+    -fx-border-radius: 5;
 }
 
 /* --- CAMPI DI TESTO (Stile Login) --- */
