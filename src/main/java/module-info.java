@@ -5,26 +5,30 @@ module com.studioMedico.GCM {
     requires javafx.fxml;
     requires javafx.web;
     requires javafx.graphics;
+    requires javafx.media;
+    requires java.desktop;
 
-    // Librerie esterne (assicurati che siano nel pom.xml)
+    // Librerie esterne
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires net.synedra.validatorfx;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
-    requires com.almasb.fxgl.all;
-    requires java.desktop;
 
-    // --- EXPORTS (Rendono i pacchetti visibili ad altri moduli) ---
+    // --- EXPORTS ---
+    // Permettono a JavaFX di lanciare l'applicazione e vedere le classi
     exports com.studioMedico.GCM.backend.funzionamento;
     exports com.studioMedico.GCM.backend.funzionamento.oggettiModello;
+    exports com.studioMedico.GCM.frontend.UI;
+    exports com.studioMedico.GCM.frontend.controller;
 
-    // --- OPENS (Permettono a JavaFX/FXML di accedere alle classi via Reflection) ---
-    // Questo serve se carichi i file FXML che puntano ai controller in questi pacchetti
+    // --- OPENS ---
+    // Indispensabile per FXML: permette a JavaFX di iniettare i campi @FXML
     opens com.studioMedico.GCM.frontend.controller to javafx.fxml;
     opens com.studioMedico.GCM.frontend.UI to javafx.fxml;
-
-    // Se hai il file Application (quello con start()) nel backend, apri anche quello
     opens com.studioMedico.GCM.backend.funzionamento to javafx.fxml;
+
+    // Se usi classi modello (come Log) in tabelle o controlli JavaFX
+    opens com.studioMedico.GCM.backend.funzionamento.oggettiModello to javafx.base;
 }
