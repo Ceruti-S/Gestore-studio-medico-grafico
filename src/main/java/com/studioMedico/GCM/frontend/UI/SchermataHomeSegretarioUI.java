@@ -1,48 +1,33 @@
 package com.studioMedico.GCM.frontend.UI;
 
-import com.studioMedico.GCM.frontend.controller.LoginController;
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.Screen;
-import javafx.geometry.Rectangle2D;
-
+import javafx.util.Duration;
 import java.net.URL;
 
 public class SchermataHomeSegretarioUI {
 
-    public char mostraHomeSegretario(Stage owner) {
+    public void mostraHomeSegretario(Stage homeStage) {
         try {
-            // 1. Definiamo il percorso relativo alla cartella resources
-            // Se il file è in src/main/resources/fxml/HomeSegretario.fxml
             String pathFXML = "/fxml/HomeSegretario.fxml";
             URL fxmlLocation = getClass().getResource(pathFXML);
 
             if (fxmlLocation == null) {
-                // Se non lo trova, stampiamo un errore chiaro per il debug
                 System.err.println("ERRORE: FXML non trovato in: " + pathFXML);
-                System.err.println("Verifica che il file sia in: src/main/resources/fxml/");
-                return 'C';
+                return;
             }
 
-            // 2. Carichiamo l'FXML
             FXMLLoader loader = new FXMLLoader(fxmlLocation);
             Parent root = loader.load();
 
-            // 3. Recuperiamo il controller
-            LoginController controller = loader.getController();
-
-            // 4. Creiamo la finestra
-            Stage homeStage = new Stage();
-            homeStage.setTitle("Home Segretario");
-            if (owner != null) homeStage.initOwner(owner);
-            homeStage.initModality(Modality.APPLICATION_MODAL);
+            // 1. Nessuna Modality. Questo garantisce che i pulsanti (minimizza/massimizza)
+            // siano "sbloccati" e cliccabili dal sistema operativo.
+            homeStage.setTitle("GCM - Home Segretario");
 
             Scene scene = new Scene(root);
-
-            // 5. Carichiamo il CSS (Assumendo che sia in resources/css/HomeSegretario.css)
             URL cssLocation = getClass().getResource("/css/HomeSegretario.css");
             if (cssLocation != null) {
                 scene.getStylesheets().add(cssLocation.toExternalForm());
@@ -50,24 +35,26 @@ public class SchermataHomeSegretarioUI {
 
             homeStage.setScene(scene);
 
-            // 6. Mostriamo la finestra (Massimizzata)
-            // Impostiamo manualmente le dimensioni dello schermo per garantire l'apertura a tutto schermo
-            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-            homeStage.setX(screenBounds.getMinX());
-            homeStage.setY(screenBounds.getMinY());
-            homeStage.setWidth(screenBounds.getWidth());
-            homeStage.setHeight(screenBounds.getHeight());
-            homeStage.setMaximized(true); 
-            
-            homeStage.showAndWait();
+            // 2. NON calcoliamo le misure dello schermo. NON usiamo setWidth/setHeight.
+            // Lasciamo la finestra "libera" per non far arrabbiare Ubuntu.
 
-            // Ritorna il risultato (o 'S' di default se il controller è nullo)
-            return (controller != null) ? controller.getLoginResult() : 'S';
+            // 3. Mostriamo la finestra. In questo momento appare, ei pulsanti si attivano.
+            homeStage.show();
+
+            // --- LA MAGIA PER TUTTI GLI OS (WINDOWS, MAC, LINUX) ---
+            // 4. Creiamo un timer invisibile di 150 millisecondi.
+            // Dà il tempo a Ubuntu di completare il disegno della barra del titolo.
+            PauseTransition delay = new PauseTransition(Duration.millis(150));
+
+            // 5. Allo scadere dei 150ms, massimizziamo in modo pulito e sicuro.
+            delay.setOnFinished(event -> homeStage.setMaximized(true));
+
+            // Facciamo partire il timer
+            delay.play();
 
         } catch (Exception e) {
             System.err.println("ERRORE FATALE durante il caricamento di HomeSegretario.fxml:");
             e.printStackTrace();
-            return 'C';
         }
     }
 }
