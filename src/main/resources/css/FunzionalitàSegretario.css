@@ -1,0 +1,113 @@
+/* --- SFONDO E CONTENITORE PRINCIPALE --- */
+.root {
+    -fx-background-color: #f0f4f7;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* --- TITOLI DEI MODULI (All'interno dello spazio bianco) --- */
+.label-titolo {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 0 0 15 0;
+}
+
+/* --- MENU LATERALE (Sidebar) --- */
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 15px;
+    -fx-font-weight: normal;
+    -fx-cursor: hand;
+    -fx-alignment: CENTER_LEFT;
+    -fx-transition: 0.2s; /* Rende l'ingrandimento fluido */
+}
+
+.menu-button:hover {
+    -fx-text-fill: #3498db;
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+}
+
+/* --- PULSANTI AZIONE (Verde per Aggiungi, Blu per Prenota/Cerca) --- */
+.action-button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+    -fx-padding: 8 20;
+}
+
+.action-button:hover {
+    -fx-background-color: #2980b9;
+    -fx-font-size: 16px; /* Effetto zoom anche sui bottoni se desiderato */
+}
+
+.btn-conferma {
+    -fx-background-color: #27ae60;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.btn-conferma:hover {
+    -fx-background-color: #219150;
+}
+
+/* --- PULSANTE LOGOUT (Rosso con bordo) --- */
+.logout-button {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+    -fx-border-color: #c0392b;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5;
+}
+
+.logout-button:hover {
+    -fx-font-size: 17px;
+    -fx-background-color: #c0392b;
+}
+
+/* --- CAMPI DI INPUT (TextField, DatePicker, TextArea, ComboBox) --- */
+.text-field, .date-picker, .combo-box, .text-area {
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: #bdc3c7;
+    -fx-background-color: white;
+    -fx-padding: 6;
+}
+
+.text-field:focused, .date-picker:focused, .combo-box:focused {
+    -fx-border-color: #3498db;
+    -fx-border-width: 2px;
+}
+
+/* --- TABELLE (Lista Pazienti e Agenda) --- */
+.table-view {
+    -fx-background-color: white;
+    -fx-background-radius: 5;
+    -fx-border-color: #bdc3c7;
+    -fx-border-radius: 5;
+}
+
+.table-view .column-header {
+    -fx-background-color: #34495e; /* Blu scuro per l'intestazione */
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.table-view .table-row-cell:odd {
+    -fx-background-color: #f9f9f9;
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: #3498db;
+}

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="20.0" styleClass="main-home-container"
+      stylesheets="@../css/FunzionalitàSegretario.css"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1">
+
+    <padding>
+        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+    </padding>
+
+    <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: #f8f9fa; -fx-padding: 10; -fx-background-radius: 5;">
+        <children>
+            <VBox>
+                <Label text="Modifica Prenotazione" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+                <Label text="Gestione Visite ed Esami" style="-fx-font-size: 11px; -fx-text-fill: #7f8c8d;" />
+            </VBox>
+            <Region HBox.hgrow="ALWAYS" />
+            <TextField fx:id="idPrenotazioneRicerca" prefWidth="250.0" promptText="Inserisci CUI Prenotazione (es. VP1)..." style="-fx-background-radius: 15;" />
+            <Button style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold;" text="CARICA PRENOTAZIONE" />
+        </children>
+    </HBox>
+
+    <HBox spacing="40.0">
+        <children>
+            <VBox spacing="15.0" prefWidth="350.0">
+                <children>
+                    <Label text="Nuovi Dettagli Appuntamento" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;" />
+
+                    <VBox spacing="5.0">
+                        <Label text="Data Appuntamento:" style="-fx-font-size: 12px;" />
+                        <DatePicker fx:id="nuovaData" maxWidth="Infinity" />
+                    </VBox>
+
+                    <VBox spacing="5.0">
+                        <Label text="Ora (HH:mm):" style="-fx-font-size: 12px;" />
+                        <TextField fx:id="nuovaOra" promptText="es. 15:30" />
+                    </VBox>
+
+                    <VBox spacing="5.0">
+                        <Label text="CUI Medico:" style="-fx-font-size: 12px;" />
+                        <TextField fx:id="nuovoMedico" promptText="Codice Medico incaricato" />
+                    </VBox>
+                </children>
+            </VBox>
+
+            <VBox spacing="15.0" HBox.hgrow="ALWAYS">
+                <children>
+                    <Label text="Informazioni Aggiuntive" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;" />
+
+                    <VBox spacing="5.0">
+                        <Label text="Motivo della Modifica / Prestazione:" style="-fx-font-size: 12px;" />
+                        <TextField fx:id="motivo" promptText="es. Spostamento per imprevisto" />
+                    </VBox>
+
+                    <VBox spacing="5.0">
+                        <Label text="Note Interne:" style="-fx-font-size: 12px;" />
+                        <TextArea fx:id="note" prefHeight="120.0" promptText="Dettagli aggiuntivi per il medico..." wrapText="true" />
+                    </VBox>
+                </children>
+            </VBox>
+        </children>
+    </HBox>
+
+    <Region VBox.vgrow="ALWAYS" />
+
+    <HBox spacing="15.0" alignment="CENTER_RIGHT">
+        <children>
+            <Button text="ANNULLA PRENOTAZIONE" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 12 20; -fx-cursor: hand;" />
+            <Button maxWidth="Infinity" HBox.hgrow="ALWAYS" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 12; -fx-cursor: hand;"
+                    text="CONFERMA E AGGIORNA APPUNTAMENTO" />
+        </children>
+    </HBox>
+
+</VBox>

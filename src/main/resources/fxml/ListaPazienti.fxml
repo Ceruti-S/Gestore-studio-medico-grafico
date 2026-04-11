@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="20" styleClass="main-home-container" stylesheets="@../css/FunzionalitàSegretario.css" xmlns:fx="http://javafx.com/fxml/1">
+    <padding><Insets top="30" right="30" bottom="30" left="30"/></padding>
+    <Label text="Anagrafica Pazienti" styleClass="label-titolo" />
+
+    <TableView fx:id="tabellaPazienti" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn text="Nome" fx:id="colNome" />
+            <TableColumn text="Cognome" fx:id="colCognome" />
+            <TableColumn text="Codice Fiscale" fx:id="colCF" />
+            <TableColumn text="Telefono" fx:id="colTel" />
+        </columns>
+        <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
+    </TableView>
+</VBox>
