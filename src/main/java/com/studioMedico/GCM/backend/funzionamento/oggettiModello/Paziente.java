@@ -364,7 +364,7 @@ public class Paziente extends Persona implements Serializable
 
     }
 
-    public boolean aggiungiEsamePrenotato(String CUImedico,  LocalDateTime dataOraEsame, String nomeEsame)
+    public boolean aggiungiEsamePrenotato(String CUImedico,  LocalDateTime dataOraEsame, String nomeEsame, String note)
     {
 
         //prima di tutto controllo se il CUI del medico esiste davvero
@@ -378,7 +378,7 @@ public class Paziente extends Persona implements Serializable
             return false;
 
         //poi aggiungo la prenotazione
-        Esame esameTemp = new Esame(CUImedico, dataOraEsame, nomeEsame, numEsamiPrenotate);
+        Esame esameTemp = new Esame(CUImedico, dataOraEsame, nomeEsame, numEsamiPrenotate, note);
         esamiPrenotati.add(esameTemp);
 
         numEsamiPrenotate++;
@@ -540,7 +540,7 @@ public class Paziente extends Persona implements Serializable
 
         }
 
-        return String.join("\n", this.patologie);
+        return String.join(", ", this.patologie);
 
     }
 
@@ -587,7 +587,7 @@ public class Paziente extends Persona implements Serializable
 
         }
 
-        return String.join("\n", this.allergie);
+        return String.join(", ", this.allergie);
 
     }
 

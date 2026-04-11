@@ -28,13 +28,14 @@ public class Esame implements Serializable
     }
 
     //per gli esami prenotati
-    public Esame(String CUImedico, LocalDateTime dataOraEsame, String nomeEsame, int numEsamiPrenotati)
+    public Esame(String CUImedico, LocalDateTime dataOraEsame, String nomeEsame, int numEsamiPrenotati, String note)
     {
 
         setCUImedico(CUImedico);
         setDataOraEsame(dataOraEsame);
         setNomeEsame(nomeEsame);
         setCUIesamePrenotato(numEsamiPrenotati);
+        setNomeEsame(note);
 
     }
 

@@ -14,7 +14,7 @@
 <VBox spacing="25.0" styleClass="main-home-container"
       stylesheets="@../css/FunzionalitàSegretario.css"
       xmlns="http://javafx.com/javafx/21"
-      xmlns:fx="http://javafx.com/fxml/1">
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studioMedico.GCM.frontend.controller.PrenotaVisitaController">
 
     <padding>
         <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
@@ -60,6 +60,6 @@
     </GridPane>
 
     <Button styleClass="action-button" text="CONFERMA PRENOTAZIONE"
-            style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-cursor: hand; -fx-padding: 10 20; -fx-font-weight: bold;" />
+            style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-cursor: hand; -fx-padding: 10 20; -fx-font-weight: bold;" onAction="#prenotaVisita"/>
 
 </VBox>

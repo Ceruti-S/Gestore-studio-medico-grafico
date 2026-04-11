@@ -18,8 +18,22 @@ public class ValidatoreDati
     //regex (modello) per username valido, formato da Tipo(1 lettera) + Numero (es. M1, I20) + _ + Resto
     private static final Pattern USERNAME_PATTERN = Pattern.compile("^[MISAP]\\d+_.*$");
 
+    //per controllare se è un CUI nella ricerca
+    private static final Pattern CUI_PATTERN = Pattern.compile("^[a-zA-Z]\\d+$");
+
     //regex per simboli, controlla se c'è almeno un carattere che NON è lettera o numero
     private static final Pattern SYMBOL_PATTERN = Pattern.compile("[^a-zA-Z0-9]");
+
+    //controlla se quello che gli si passa è un cui
+    public static boolean isAcui(String cui)
+    {
+
+        if(cui==null || cui.isEmpty())
+            return false;
+
+        return  CUI_PATTERN.matcher(cui).matches();
+
+    }
 
     /*
      * controlla che il nome utente segua il formato standard (es. M1_rossi)

@@ -67,7 +67,7 @@ public class MainClass extends Application
 
     }
 
-    private void lancioIniziale(Stage stage) throws IOException
+    public static void lancioIniziale(Stage stage) throws IOException
     {
 
         Path testEsistenzaCredenziali = ConfigFile.CREDENZIALI_FILE;

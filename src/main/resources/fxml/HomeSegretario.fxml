@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="720.0" prefWidth="1100.0" styleClass="main-container" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="720.0" prefWidth="1100.0" styleClass="main-container" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studioMedico.GCM.frontend.controller.HomeSegretarioController">
 
    <top>
       <VBox style="-fx-background-color: white;">
@@ -21,21 +21,21 @@
                </padding>
                <children>
                   <HBox alignment="CENTER_LEFT" spacing="10.0">
-                     <TextField prefWidth="250.0" promptText="Cerca paziente (CUI o Cognome)..." style="-fx-background-radius: 20;" />
-                     <Button styleClass="login-button" text="Cerca" />
+                     <TextField prefWidth="250.0" promptText="Cerca paziente (CUI o Cognome)..." style="-fx-background-radius: 20;" fx:id="txtRicercaRapida"/>
+                     <Button styleClass="login-button" text="Cerca" onAction="#gestisciRicerca"/>
                   </HBox>
 
                   <Region HBox.hgrow="ALWAYS" />
 
                   <VBox alignment="CENTER" spacing="2.0">
-                     <Label style="-fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Utente: Segretario" />
+                     <Label fx:id="lblNomeUtente" style="-fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Utente: Segretario" />
                      <Label style="-fx-font-size: 11px; -fx-text-fill: #7f8c8d;" text="Accesso Standard" />
                   </VBox>
 
                   <Region HBox.hgrow="ALWAYS" />
 
                   <Button styleClass="logout-button" text="logout"
-                          style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 15; -fx-background-radius: 5;" />
+                          style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 15; -fx-background-radius: 5;" onAction="#gestisciLogout"/>
                </children>
             </HBox>
 
@@ -56,8 +56,9 @@
                      <VBox.margin><Insets left="10.0" /></VBox.margin>
                   </Label>
 
-                  <Button maxWidth="Infinity" styleClass="menu-button" text="• Fissa Appuntamento" />
-                  <Button maxWidth="Infinity" styleClass="menu-button" text="• Modifica Prenotazione" />
+                  <Button maxWidth="Infinity" styleClass="menu-button" text="• Fissa Visita" onAction="#gestisciAperturaPrenotaVisita"/>
+                  <Button maxWidth="Infinity" styleClass="menu-button" text="• Fissa Esame" onAction="#gestisciAperturaPrenotaEsame"/>
+                  <Button maxWidth="Infinity" styleClass="menu-button" text="• Modifica Prenotazione" onAction="#gestisciAperturaModificaPrenotazione"/>
 
                   <Region prefHeight="10.0" />
 
@@ -65,15 +66,17 @@
                      <VBox.margin><Insets left="10.0" /></VBox.margin>
                   </Label>
 
-                  <Button maxWidth="Infinity" styleClass="menu-button" text="• Aggiungi Nuovo Paziente" />
-                  <Button maxWidth="Infinity" styleClass="menu-button" text="• Modifica Info Personali" />
+                  <Button maxWidth="Infinity" styleClass="menu-button" text="• Aggiungi Nuovo Paziente" onAction="#gestisciAperturaAggiungiPaziente"/>
+                  <Button maxWidth="Infinity" styleClass="menu-button" text="• Modifica Info Paziente" onAction="#gestisciAperturaModificaPaziente"/>
 
                   <Region prefHeight="10.0" />
 
                   <Label text="STRUMENTI" style="-fx-text-fill: #95a5a6; -fx-font-size: 10px; -fx-font-weight: bold;">
                      <VBox.margin><Insets left="10.0" /></VBox.margin>
                   </Label>
-                  <Button maxWidth="Infinity" styleClass="menu-button" text="• Agenda Studio" />
+                  <Button maxWidth="Infinity" styleClass="menu-button" text="• Agenda Studio" onAction="#gestisciAperturaAgenda"/>
+                  <Button maxWidth="Infinity" styleClass="menu-button" text="• Lista pazienti" onAction="#gestisciAperturaListaPazienti"/>
+
                </children>
             </VBox>
 

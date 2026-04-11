@@ -20,7 +20,7 @@ public class CreazioneEliminazionePersone
      * questa classe creerà i vari oggetti delle persone, poi scriverà il file
      */
 
-    public static boolean creaPaziente(String telefono, String indirizzo, String gruppoSanguigno, String nome, String cognome, LocalDate dataNascita, String codiceFiscale) throws IOException
+    public static boolean creaPaziente(String telefono, String indirizzo, String gruppoSanguigno, String nome, String cognome, LocalDate dataNascita, String codiceFiscale, String[] allergie, String[] patologie) throws IOException
     {
 
         //Se il telefono inserito non è valido, non inserisco il paziente, stessa cosa per gli altri dati
@@ -78,6 +78,29 @@ public class CreazioneEliminazionePersone
         paziente.setIndirizzo(indirizzo);
         paziente.setCUI(cuiEstratto);
         paziente.setEta();
+
+        if(allergie!=null)
+        {
+
+            for(int i=0; i<allergie.length; i++)
+            {
+
+                paziente.aggiungiAllergia(allergie[i]);
+
+            }
+
+        }
+        if(patologie!=null)
+        {
+
+            for(int i=0; i<patologie.length; i++)
+            {
+
+                paziente.aggiungiPatologia(patologie[i]);
+
+            }
+
+        }
 
         //costruisco il nome del file completo
         String nomeFileFinale = cuiEstratto + ".dat";

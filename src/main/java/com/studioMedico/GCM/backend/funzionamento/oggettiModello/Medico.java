@@ -37,11 +37,11 @@ public class Medico extends Persona implements Serializable
         return new ArrayList<>(agendaAppuntamentiEsame);
     }
 
-    public boolean aggiungiAppuntamentoEsame(String CUIpaziente, LocalDateTime dataOraEsame, String nomeEsame)
+    public boolean aggiungiAppuntamentoEsame(String CUIpaziente, LocalDateTime dataOraEsame, String nomeEsame, String note)
     {
 
         //poi aggiungo la prenotazione
-        Esame esametemp = new Esame(CUIpaziente, dataOraEsame, nomeEsame, this.numEventiAgendaEsame);
+        Esame esametemp = new Esame(CUIpaziente, dataOraEsame, nomeEsame, this.numEventiAgendaEsame, note);
         agendaAppuntamentiEsame.add(esametemp);
 
         numEventiAgendaEsame++;

@@ -13,7 +13,7 @@
 <VBox spacing="25.0" styleClass="main-home-container"
       stylesheets="@../css/FunzionalitàSegretario.css"
       xmlns="http://javafx.com/javafx/21"
-      xmlns:fx="http://javafx.com/fxml/1">
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studioMedico.GCM.frontend.controller.PrenotaEsameController">
 
     <padding>
         <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
@@ -29,14 +29,14 @@
                 <VBox spacing="5.0">
                     <children>
                         <Label styleClass="label-campo" text="CUI Paziente:" />
-                        <TextField fx:id="cuiPaziente" promptText="Inserisci CUI del paziente (es. P1)..." />
+                        <TextField fx:id="cuiPazienteEsame" promptText="Inserisci CUI del paziente (es. P1)..." />
                     </children>
                 </VBox>
 
                 <VBox spacing="5.0">
                     <children>
                         <Label styleClass="label-campo" text="CUI Medico Prescrivente:" />
-                        <TextField fx:id="cuiMedicoEsame" promptText="Inserisci o seleziona CUI medico..." />
+                        <TextField fx:id="cuiMedicoEsame" promptText="Inserisci CUI medico..." />
                     </children>
                 </VBox>
 
@@ -73,8 +73,8 @@
 
                 <Region prefHeight="10.0" />
 
-                <Button maxWidth="Infinity" styleClass="action-button" text="CONFERMA E AGGIUNGI ESAME"
-                        style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 12; -fx-cursor: hand;" />
+                <Button maxWidth="Infinity" styleClass="action-button" text="CONFERMA E PRENOTA ESAME"
+                        style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 12; -fx-cursor: hand;" onAction="#prenotaEsame"/>
             </children>
         </VBox>
     </children>

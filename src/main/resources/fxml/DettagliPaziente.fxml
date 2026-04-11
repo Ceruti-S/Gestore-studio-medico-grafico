@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox spacing="20.0" styleClass="main-home-container"
+      stylesheets="@../css/FunzionalitàSegretario.css"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.studioMedico.GCM.frontend.controller.DettagliPazienteController">
+
+    <padding>
+        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+    </padding>
+
+    <Label styleClass="label-titolo" text="Visualizzazione dettagli paziente"
+           style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+
+    <HBox spacing="40.0">
+        <children>
+            <VBox prefWidth="300.0" spacing="15.0">
+                <children>
+                    <Label text="Dati Personali" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;" />
+                    <Text fx:id="CUI" />
+                    <Text fx:id="nome" />
+                    <Text fx:id="cognome" />
+                    <Text fx:id="dataNascita" />
+                    <Text fx:id="eta" />
+                    <Text fx:id="codiceFiscale" />
+                    <Text fx:id="telefono" />
+                    <Text fx:id="indirizzo" />
+                    <Text fx:id="gruppoSanguigno"/>
+                </children>
+            </VBox>
+
+            <VBox spacing="15.0" HBox.hgrow="ALWAYS">
+                <children>
+                    <Label text="Anamnesi Rapida" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;" />
+                    <Label styleClass="label-campo" text="Allergie:" />
+                    <Text fx:id="allergie" />
+                    <Label styleClass="label-campo" text="Patologie Pregresse:" />
+                    <Text fx:id="patologie" />
+                </children>
+            </VBox>
+        </children>
+    </HBox>
+
+    <VBox spacing="20.0" VBox.vgrow="ALWAYS">
+        <children>
+
+            <Label text="STORICO (Visite | Esami)" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;" />
+            <HBox spacing="15.0" prefHeight="200.0">
+                <children>
+                    <TableView fx:id="tabellaStoricoVisite" HBox.hgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colCuiSVisite" text="CUI Visita" />
+                            <TableColumn fx:id="colDataSVisite" text="Data" />
+                        </columns>
+                        <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
+                    </TableView>
+
+                    <TableView fx:id="tabellaStoricoEsami" HBox.hgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colCuiSEsami" text="CUI Esame" />
+                            <TableColumn fx:id="colDataSEsami" text="Data" />
+                        </columns>
+                        <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
+                    </TableView>
+
+                </children>
+            </HBox>
+
+            <Label text="PRENOTAZIONI (Visite | Esami | Terapie)" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;" />
+            <HBox spacing="15.0" prefHeight="200.0">
+                <children>
+                    <TableView fx:id="tabellaPrenotazioniVisite" HBox.hgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colCuiPVisite" text="CUI Visita" />
+                            <TableColumn fx:id="colDataPVisite" text="Data" />
+                        </columns>
+                        <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
+                    </TableView>
+
+                    <TableView fx:id="tabellaPrenotazioniEsami" HBox.hgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colCuiPEsami" text="CUI Esame" />
+                            <TableColumn fx:id="colDataPEsami" text="Data" />
+                        </columns>
+                        <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
+                    </TableView>
+
+                    <TableView fx:id="tabellaPrenotazioniTerapie" HBox.hgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colCuiPTerapie" text="CUI Terapia" />
+                            <TableColumn fx:id="colDataPTerapie" text="Data di fine" />
+                        </columns>
+                        <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
+                    </TableView>
+                </children>
+            </HBox>
+
+        </children>
+    </VBox>
+
+</VBox>

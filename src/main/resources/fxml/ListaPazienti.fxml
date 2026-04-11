@@ -3,16 +3,27 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<VBox spacing="20" styleClass="main-home-container" stylesheets="@../css/FunzionalitàSegretario.css" xmlns:fx="http://javafx.com/fxml/1">
+<VBox spacing="20" styleClass="main-home-container" stylesheets="@../css/FunzionalitàSegretario.css"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.studioMedico.GCM.frontend.controller.ListaPazientiController">
+
     <padding><Insets top="30" right="30" bottom="30" left="30"/></padding>
+
     <Label text="Anagrafica Pazienti" styleClass="label-titolo" />
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="Aggiorna Lista" onAction="#caricaDatiPazienti" />
+    </HBox>
 
     <TableView fx:id="tabellaPazienti" VBox.vgrow="ALWAYS">
         <columns>
-            <TableColumn text="Nome" fx:id="colNome" />
-            <TableColumn text="Cognome" fx:id="colCognome" />
-            <TableColumn text="Codice Fiscale" fx:id="colCF" />
-            <TableColumn text="Telefono" fx:id="colTel" />
+            <TableColumn fx:id="colCUI" text="CUI" prefWidth="50" />
+            <TableColumn fx:id="colNome" text="Nome" prefWidth="150" />
+            <TableColumn fx:id="colCognome" text="Cognome" prefWidth="150" />
+            <TableColumn fx:id="colCF" text="Codice Fiscale" prefWidth="200" />
+            <TableColumn fx:id="colTel" text="Telefono" prefWidth="150" />
+            <TableColumn fx:id="colAllergie" text="Allergie" prefWidth="150" />
+            <TableColumn fx:id="colPatologie" text="Patologie" prefWidth="150" />
         </columns>
         <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
     </TableView>
