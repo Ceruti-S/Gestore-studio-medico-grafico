@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="25.0" styleClass="main-container"
+      stylesheets="@../css/Amministratore.css"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+>
+
+    <padding>
+        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+    </padding>
+
+    <Label styleClass="page-title" text="Gestione Personale e Staff" />
+
+    <HBox spacing="30.0" VBox.vgrow="ALWAYS">
+        <children>
+            <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                <children>
+                    <Label styleClass="section-label" text="Dipendenti Attivi" />
+                    <TableView fx:id="tabellaStaff" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colCui" prefWidth="80.0" text="CUI" />
+                            <TableColumn fx:id="colRuolo" prefWidth="120.0" text="Ruolo" />
+                            <TableColumn fx:id="colNome" prefWidth="150.0" text="Nome" />
+                            <TableColumn fx:id="colCognome" prefWidth="150.0" text="Cognome" />
+                        </columns>
+                    </TableView>
+                    <Button maxWidth="Infinity" onAction="#eliminaUtente" styleClass="btn-delete" text="ELIMINA UTENTE SELEZIONATO" />
+                </children>
+            </VBox>
+
+            <VBox prefWidth="320.0" spacing="15.0" styleClass="form-container">
+                <children>
+                    <Label styleClass="form-title" text="Registra Nuovo Account" />
+
+                    <TextField fx:id="nomeField" promptText="Nome" />
+                    <TextField fx:id="cognomeField" promptText="Cognome" />
+                    <PasswordField fx:id="passField" promptText="Password Iniziale" />
+
+                    <Label text="Ruolo Aziendale:" />
+                    <ComboBox fx:id="ruoloCombo" maxWidth="Infinity" promptText="Seleziona Ruolo">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="Medico" />
+                                <String fx:value="Segretario" />
+                                <String fx:value="IT Support" />
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+
+                    <TextField fx:id="extraField" promptText="Specializzazione (se Medico)" />
+
+                    <VBox VBox.vgrow="ALWAYS" />
+                    <Button maxWidth="Infinity" onAction="#creaUtente" styleClass="btn-save" text="CREA UTENTE" />
+                </children>
+            </VBox>
+        </children>
+    </HBox>
+</VBox>
