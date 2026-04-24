@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="mainPane" prefHeight="750.0" prefWidth="1200.0"
+            stylesheets="@../css/ITSupport.css"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+>
+
+    <left>
+        <VBox prefWidth="250.0" spacing="15.0" styleClass="sidebar-it">
+            <children>
+                <VBox spacing="5.0">
+                    <children>
+                        <Label styleClass="sidebar-title" text="GCM SYSTEM" />
+                        <Label styleClass="sidebar-subtitle" text="IT Support - SuperUser" />
+                    </children>
+                </VBox>
+
+                <Separator opacity="0.2" />
+
+                <Label text="MANUTENZIONE" styleClass="menu-section-label" />
+                <Button maxWidth="Infinity" onAction="#apriGestioneUtenti" styleClass="menu-button" text="Gestione Globale Utenti" />
+                <Button maxWidth="Infinity" onAction="#apriGestioneAdmin" styleClass="menu-button-special" text="Gestione Admin" />
+
+                <Separator opacity="0.2" />
+
+                <Label text="SISTEMA" styleClass="menu-section-label" />
+                <Button maxWidth="Infinity" onAction="#apriLogIntegrali" styleClass="menu-button" text="Log di Sistema" />
+                <Button maxWidth="Infinity" onAction="#apriManutenzioneFile" styleClass="menu-button" text="Backup &amp; Ripristino" />
+
+                <Region VBox.vgrow="ALWAYS" />
+
+                <Button maxWidth="Infinity" onAction="#eseguiLogout" styleClass="logout-button" text="LOGOUT SICURO" />
+            </children>
+            <padding>
+                <Insets bottom="25.0" left="20.0" right="20.0" top="25.0" />
+            </padding>
+        </VBox>
+    </left>
+
+    <center>
+        <StackPane fx:id="contentArea" styleClass="content-area-it">
+            <children>
+                <VBox alignment="CENTER" spacing="10">
+                    <Label styleClass="placeholder-text" text="Modalità Manutenzione Attiva" />
+                    <Label text="Selezionare una risorsa critica dal menu laterale" style="-fx-text-fill: #7f8c8d;" />
+                </VBox>
+            </children>
+        </StackPane>
+    </center>
+</BorderPane>

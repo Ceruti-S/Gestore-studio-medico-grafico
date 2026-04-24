@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="20.0" styleClass="main-container"
+      stylesheets="@../css/Medico.css"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+>
+
+    <padding><Insets bottom="25.0" left="25.0" right="25.0" top="25.0" /></padding>
+
+    <HBox spacing="20" alignment="CENTER_LEFT">
+        <Label styleClass="page-title" text="Cartella Medica:" />
+        <Label fx:id="nomePazienteLabel" text="Selezionare Paziente..." style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2980b9;" />
+    </HBox>
+
+    <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+        <tabs>
+            <Tab text="Anamnesi e Visite">
+                <VBox spacing="15" style="-fx-padding: 20;">
+                    <Label text="Storico Visite ed Esami" styleClass="section-label" />
+                    <TableView fx:id="tabellaVisite" prefHeight="200">
+                        <columns>
+                            <TableColumn text="Data" prefWidth="100" />
+                            <TableColumn text="Tipo" prefWidth="150" />
+                            <TableColumn text="Esito/Referto" prefWidth="400" />
+                        </columns>
+                    </TableView>
+                    <TextArea fx:id="nuovaVisitaNote" prefHeight="100" promptText="Inserisci nuovo referto visita..." />
+                    <Button text="SALVA NUOVA VISITA" styleClass="btn-medico-save" />
+                </VBox>
+            </Tab>
+
+            <Tab text="Terapie e Farmaci">
+                <VBox spacing="15" style="-fx-padding: 20;">
+                    <Label text="Terapie in Corso" styleClass="section-label" />
+                    <TextArea fx:id="areaTerapie" prefHeight="300" wrapText="true" promptText="Dettagliare terapie, dosaggi e durata..." />
+                    <Button text="AGGIORNA TERAPIA" styleClass="btn-medico-save" />
+                </VBox>
+            </Tab>
+
+            <Tab text="Emissione Ricette">
+                <VBox spacing="15" style="-fx-padding: 20;">
+                    <Label text="Nuova Prescrizione per il Segretario" styleClass="section-label" />
+                    <TextField fx:id="tipoPrestazioneRicetta" promptText="Prestazione richiesta (es. Esame del sangue, Visita Specialistica)" />
+                    <TextArea fx:id="noteRicetta" prefHeight="100" promptText="Note aggiuntive per la prenotazione..." />
+                    <Button text="GENERA RICETTA DIGITALE" styleClass="btn-medico-special" />
+                </VBox>
+            </Tab>
+        </tabs>
+    </TabPane>
+</VBox>

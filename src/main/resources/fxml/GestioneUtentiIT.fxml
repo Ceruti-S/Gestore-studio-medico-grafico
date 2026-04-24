@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="25.0" styleClass="main-container"
+      stylesheets="@../css/ITSupport.css"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+>
+
+    <padding>
+        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+    </padding>
+
+    <HBox alignment="CENTER_LEFT">
+        <children>
+            <VBox>
+                <Label styleClass="page-title" text="Controllo Accessi Totale" />
+                <Label text="Creazione e revoca permessi per Staff, Medici e Amministratori" style="-fx-text-fill: #7f8c8d;" />
+            </VBox>
+        </children>
+    </HBox>
+
+    <HBox spacing="30.0" VBox.vgrow="ALWAYS">
+        <children>
+            <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                <children>
+                    <TableView fx:id="tabellaGlobale" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colCui" prefWidth="70.0" text="CUI" />
+                            <TableColumn fx:id="colRuolo" prefWidth="110.0" text="Ruolo" />
+                            <TableColumn fx:id="colNome" prefWidth="130.0" text="Nome" />
+                            <TableColumn fx:id="colCognome" prefWidth="130.0" text="Cognome" />
+                            <TableColumn fx:id="colStato" prefWidth="90.0" text="Stato" />
+                        </columns>
+                    </TableView>
+                    <HBox spacing="10">
+                        <Button maxWidth="Infinity" HBox.hgrow="ALWAYS" onAction="#resetPassword" styleClass="btn-warning" text="RESET PASSWORD" />
+                        <Button maxWidth="Infinity" HBox.hgrow="ALWAYS" onAction="#eliminaUtente" styleClass="btn-danger" text="ELIMINA ACCOUNT" />
+                    </HBox>
+                </children>
+            </VBox>
+
+            <VBox prefWidth="350.0" spacing="15.0" styleClass="form-container-it">
+                <children>
+                    <Label styleClass="form-title" text="Nuovo Nodo Utente" />
+
+                    <TextField fx:id="nomeField" promptText="Nome" />
+                    <TextField fx:id="cognomeField" promptText="Cognome" />
+                    <PasswordField fx:id="passField" promptText="Master Password" />
+
+                    <Label text="Assegna Privilegi:" styleClass="section-label" />
+                    <ComboBox fx:id="ruoloCombo" maxWidth="Infinity" promptText="Seleziona Ruolo">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="Amministratore" />
+                                <String fx:value="Medico" />
+                                <String fx:value="Segretario" />
+                                <String fx:value="IT Support" />
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+
+                    <Separator />
+                    <Label text="Note di Sistema:" styleClass="section-label" />
+                    <TextArea fx:id="noteIT" prefHeight="80.0" promptText="Motivo della creazione..." wrapText="true" />
+
+                    <Region VBox.vgrow="ALWAYS" />
+                    <Button maxWidth="Infinity" onAction="#creaUtente" styleClass="btn-it-save" text="GENERA UTENTE" />
+                </children>
+            </VBox>
+        </children>
+    </HBox>
+</VBox>

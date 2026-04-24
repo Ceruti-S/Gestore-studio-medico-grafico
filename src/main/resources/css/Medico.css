@@ -1,0 +1,47 @@
+.sidebar-medico {
+    -fx-background-color: #006266; /* Verde scuro medico */
+}
+
+.sidebar-title {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.sidebar-subtitle {
+    -fx-text-fill: #d1d8e0;
+    -fx-font-size: 13px;
+    -fx-font-style: italic;
+}
+
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-alignment: CENTER_LEFT;
+    -fx-cursor: hand;
+    -fx-padding: 10 15;
+}
+
+.menu-button:hover {
+    -fx-background-color: #1289A7;
+}
+
+.btn-medico-save {
+    -fx-background-color: #1289A7;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+}
+
+.btn-medico-special {
+    -fx-background-color: #f39c12; /* Arancio per le ricette, spicca molto */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+}
+
+.section-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}

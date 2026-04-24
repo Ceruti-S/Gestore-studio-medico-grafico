@@ -1,0 +1,59 @@
+.sidebar-it {
+    -fx-background-color: #1a1a1a; /* Nero profondo */
+}
+
+.sidebar-title {
+    -fx-text-fill: #e67e22; /* Arancione IT */
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.sidebar-subtitle {
+    -fx-text-fill: #95a5a6;
+    -fx-font-size: 11px;
+}
+
+.menu-section-label {
+    -fx-text-fill: #555555;
+    -fx-font-weight: bold;
+    -fx-font-size: 10px;
+}
+
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #ecf0f1;
+    -fx-alignment: CENTER_LEFT;
+    -fx-cursor: hand;
+}
+
+.menu-button-special {
+    -fx-background-color: rgba(230, 126, 34, 0.1);
+    -fx-text-fill: #e67e22;
+    -fx-alignment: CENTER_LEFT;
+    -fx-cursor: hand;
+    -fx-border-color: #e67e22;
+    -fx-border-width: 0 0 0 3;
+}
+
+.btn-it-save {
+    -fx-background-color: #e67e22;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.btn-warning {
+    -fx-background-color: #f1c40f;
+    -fx-text-fill: black;
+}
+
+.btn-danger {
+    -fx-background-color: #c0392b;
+    -fx-text-fill: white;
+}
+
+.form-container-it {
+    -fx-background-color: #f9f9f9;
+    -fx-padding: 20;
+    -fx-border-color: #dcdde1;
+    -fx-border-radius: 5;
+}
