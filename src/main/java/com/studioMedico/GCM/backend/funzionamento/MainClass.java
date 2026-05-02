@@ -6,8 +6,7 @@ import com.studioMedico.GCM.backend.gestioneFile.ConfigFile_backup;
 import com.studioMedico.GCM.backend.gestioneFile.InitFileSystem;
 import com.studioMedico.GCM.backend.gestioneFile.InitFileSystem_backup;
 import com.studioMedico.GCM.backend.gestioneFile.modifica.ControlloDatiIniziale;
-import com.studioMedico.GCM.frontend.UI.SchermataHomeSegretarioUI;
-import com.studioMedico.GCM.frontend.UI.SchermataLoginUI; // Usiamo la versione UI di JavaFX
+import com.studioMedico.GCM.frontend.UI.*;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -35,7 +34,7 @@ public class MainClass extends Application
 
     }
 
-    private static void lanciaMenu()
+    private static void lanciaMenu(Stage stage)
     {
 
         char tipoUtente = ControlloLogin.utenteAttivo.charAt(0);
@@ -44,19 +43,47 @@ public class MainClass extends Application
         {
 
             case 'M':
-                // lancio il menù GUI del medico
+
+                HomeMedicoUI homeMedicoUI = new HomeMedicoUI();
+                homeMedicoUI.mostraHome(stage);
+
                 break;
 
             case 'S':
-                // lancio il menù GUI del segretario
+
+                SchermataHomeSegretarioUI homeSegretarioUI = new SchermataHomeSegretarioUI();
+                homeSegretarioUI.mostraHomeSegretario(stage);
+
                 break;
 
             case 'I':
-                // lancio il menù GUI dell'IT
+
+                String controlloUtente = ControlloLogin.utenteAttivo.substring(0, 2);
+
+                if(controlloUtente.compareTo("I0") == 0)
+                {
+
+                    //se è il primo avvio lancio una schermata speciale
+                    PrimoAvvioUI primoAvvioUI = new PrimoAvvioUI();
+                    primoAvvioUI.mostraSchermata(stage);
+
+                }
+                else
+                {
+
+                    //se non è il primo avvio lancio normale
+                    SchermataHomeItUI homeItUI = new SchermataHomeItUI();
+                    homeItUI.mostraHomeIT(stage);
+
+                }
+
                 break;
 
             case 'A':
-                // lancio il menù GUI dell'amministratore
+
+                HomeAmministratoreUI homeAmministratore = new HomeAmministratoreUI();
+                homeAmministratore.mostraHome(stage);
+
                 break;
 
             default:
@@ -109,9 +136,6 @@ public class MainClass extends Application
 
         }
 
-        SchermataHomeSegretarioUI homeSegretarioUI = new SchermataHomeSegretarioUI();
-        homeSegretarioUI.mostraHomeSegretario(stage);
-
         Log logTemp = new Log(LocalDateTime.now(), "Sistema", "Utente loggato con successo: " + ControlloLogin.utenteAttivo);
         try
         {
@@ -137,7 +161,7 @@ public class MainClass extends Application
         {
 
             checkFileIniziale();
-            lanciaMenu();
+            lanciaMenu(stage);
 
         }
 

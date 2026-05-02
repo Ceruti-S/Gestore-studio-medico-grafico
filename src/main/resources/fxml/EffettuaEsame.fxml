@@ -14,13 +14,13 @@
 <VBox spacing="25.0" styleClass="main-home-container"
       stylesheets="@../css/FunzionalitàSegretario.css"
       xmlns="http://javafx.com/javafx/21"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studioMedico.GCM.frontend.controller.PrenotaVisitaController">
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studioMedico.GCM.frontend.controller.EffettuaEsameController">
 
     <padding>
         <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
     </padding>
 
-    <Label styleClass="label-titolo" text="Prenotazione Visita"
+    <Label styleClass="label-titolo" text="Effettua Esame"
            style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
 
     <GridPane hgap="20.0" vgap="15.0">
@@ -33,20 +33,14 @@
             <Label styleClass="label-campo" text="CUI Paziente:" GridPane.rowIndex="0" />
             <TextField fx:id="cuiPaziente" promptText="Inserisci CUI Paziente" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-            <Label styleClass="label-campo" text="CUI Medico (se sei un medico il tuo CUI):" GridPane.rowIndex="1" />
-            <TextField fx:id="cuiMedico" promptText="Inserisci CUI Medico...(se sei un medico il tuo CUI)" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label styleClass="label-campo" text="Nome esame:" GridPane.rowIndex="1" />
+            <TextField fx:id="nomeEsame" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-            <Label styleClass="label-campo" text="Data Visita:" GridPane.rowIndex="2" />
-            <DatePicker fx:id="dataVisita" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label styleClass="label-campo" text="Risultato:" GridPane.rowIndex="2" />
+            <TextArea fx:id="diagnosi" prefHeight="100.0" promptText="Risultato dell'esame..." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-            <Label styleClass="label-campo" text="Ora Visita (HH:mm):" GridPane.rowIndex="3" />
-            <TextField fx:id="oraVisita" promptText="es. 10:30" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-
-            <Label styleClass="label-campo" text="Motivo:" GridPane.rowIndex="4" />
-            <TextField fx:id="motivo" promptText="es. Controllo" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-
-            <Label styleClass="label-campo" text="Note:" GridPane.rowIndex="5" />
-            <TextArea fx:id="note" prefHeight="100.0" promptText="Eventuali note aggiuntive..." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label styleClass="label-campo" text="Note:" GridPane.rowIndex="3" />
+            <TextArea fx:id="note" prefHeight="100.0" promptText="Eventuali note aggiuntive..." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
         </children>
 
         <rowConstraints>
@@ -59,7 +53,7 @@
         </rowConstraints>
     </GridPane>
 
-    <Button styleClass="action-button" text="CONFERMA PRENOTAZIONE"
-            style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-cursor: hand; -fx-padding: 10 20; -fx-font-weight: bold;" onAction="#prenotaVisita"/>
+    <Button styleClass="action-button" text="CONFERMA E REGISTRA ESAME"
+            style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-cursor: hand; -fx-padding: 10 20; -fx-font-weight: bold;" onAction="#registraEsame"/>
 
 </VBox>

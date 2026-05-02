@@ -13,6 +13,7 @@
             stylesheets="@../css/Medico.css"
             xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.studioMedico.GCM.frontend.controller.HomeMedicoController"
 >
 
     <left>
@@ -21,15 +22,21 @@
                 <VBox spacing="5.0">
                     <children>
                         <Label styleClass="sidebar-title" text="AREA MEDICA" />
-                        <Label fx:id="labelNomeMedico" styleClass="sidebar-subtitle" text="Dott. [Nome Medico]" />
+                        <Label fx:id="lblNomeUtente" styleClass="sidebar-subtitle" text="Dott. [Nome Medico]" />
                     </children>
                 </VBox>
 
                 <Separator opacity="0.2" />
 
-                <Button maxWidth="Infinity" onAction="#apriAgenda" styleClass="menu-button" text="La Mia Agenda" />
-                <Button maxWidth="Infinity" onAction="#apriRicercaPaziente" styleClass="menu-button" text="Cartelle Cliniche" />
-                <Button maxWidth="Infinity" onAction="#apriEmissioneRicette" styleClass="menu-button" text="Emetti Ricetta" />
+                <Button maxWidth="Infinity" onAction="#gestisciAperturaListaPazienti" styleClass="menu-button" text="Lista pazienti" />
+                <Button maxWidth="Infinity" styleClass="menu-button" text="• Fissa Visita" onAction="#gestisciAperturaPrenotaVisita"/>
+                <Button maxWidth="Infinity" styleClass="menu-button" text="• Fissa Esame" onAction="#gestisciAperturaPrenotaEsame"/>
+                <Button maxWidth="Infinity" styleClass="menu-button" text="• Prescrivi Terapia" onAction="#gestisciAperturaPrescriviTerapia"/>
+                <Button maxWidth="Infinity" styleClass="menu-button" text="• Effettua Visita" onAction="#gestisciAperturaEffettuaVisita"/>
+                <Button maxWidth="Infinity" styleClass="menu-button" text="• Effettua Esame" onAction="#gestisciAperturaEffettuaEsame"/>
+
+                <Button maxWidth="Infinity" styleClass="menu-button" text="• Aggiungi Nuovo Paziente" onAction="#gestisciAperturaAggiungiPaziente"/>
+                <Button maxWidth="Infinity" styleClass="menu-button" text="• Modifica Info Paziente" onAction="#gestisciAperturaModificaPaziente"/>
 
                 <Region VBox.vgrow="ALWAYS" />
 

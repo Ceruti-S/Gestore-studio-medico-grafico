@@ -42,7 +42,7 @@ public class ScritturaFile
                 IT itTemp = (IT)oggetto;
 
                 //se il suo CUI è I0 è l'utente di default
-                if(itTemp.getCUI().equals("I0"))
+                if("I0".equals(itTemp.getCUI()))
                 {
 
                     file = ConfigFile.IT_DIR.resolve("I0.dat");
@@ -112,6 +112,82 @@ public class ScritturaFile
 
             e.printStackTrace();
             throw new IOException("Errore fatele nella scrittura del file cifrato", e);
+
+        }
+
+    }
+
+    public static void aggiungiCredenziali(String username, String passwordHash) throws IOException
+    {
+
+        try
+        {
+
+            Map<String, String> credenziali = LetturaFile.leggiFileCifrato(ConfigFile.CREDENZIALI_FILE);
+
+            credenziali.put(username, passwordHash);
+
+            byte[] datiCriptati = serializzaEcripta(credenziali);
+
+            Files.write(ConfigFile.CREDENZIALI_FILE, datiCriptati);
+
+            Path backupFile = ConfigFile_backup.getBackupPath(ConfigFile.CREDENZIALI_FILE);
+            if(backupFile != null)
+            {
+
+                if(Files.notExists(backupFile.getParent()))
+                {
+
+                    Files.createDirectories(backupFile.getParent());
+
+                }
+
+                Files.write(backupFile, datiCriptati);
+
+            }
+
+        }
+        catch(Exception e)
+        {
+
+            throw new IOException("Errore durante l'aggiornamento del file credenziali", e);
+
+        }
+
+    }
+
+    public static void rimuoviCredenziali(String username) throws IOException
+    {
+
+        try
+        {
+
+            Map<String, String> credenziali = LetturaFile.leggiFileCifrato(ConfigFile.CREDENZIALI_FILE);
+
+
+            if(credenziali.containsKey(username))
+            {
+
+                credenziali.remove(username);
+
+                byte[] datiCriptati = serializzaEcripta(credenziali);
+                Files.write(ConfigFile.CREDENZIALI_FILE, datiCriptati);
+
+                Path backupFile = ConfigFile_backup.getBackupPath(ConfigFile.CREDENZIALI_FILE);
+                if(backupFile != null)
+                {
+
+                    Files.write(backupFile, datiCriptati);
+
+                }
+
+            }
+
+        }
+        catch(Exception e)
+        {
+
+            throw new IOException("Errore durante la rimozione delle credenziali per: " + username, e);
 
         }
 

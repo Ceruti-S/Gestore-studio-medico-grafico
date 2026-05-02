@@ -13,6 +13,7 @@
             stylesheets="@../css/ITSupport.css"
             xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.studioMedico.GCM.frontend.controller.HomeITcontroller"
 >
 
     <left>
@@ -21,25 +22,22 @@
                 <VBox spacing="5.0">
                     <children>
                         <Label styleClass="sidebar-title" text="GCM SYSTEM" />
-                        <Label styleClass="sidebar-subtitle" text="IT Support - SuperUser" />
+                        <Label styleClass="sidebar-subtitle" text="" fx:id="lblNomeUtente"/>
                     </children>
                 </VBox>
 
                 <Separator opacity="0.2" />
 
                 <Label text="MANUTENZIONE" styleClass="menu-section-label" />
-                <Button maxWidth="Infinity" onAction="#apriGestioneUtenti" styleClass="menu-button" text="Gestione Globale Utenti" />
-                <Button maxWidth="Infinity" onAction="#apriGestioneAdmin" styleClass="menu-button-special" text="Gestione Admin" />
+                <Button maxWidth="Infinity" onAction="#apriGestioneUtenti" styleClass="menu-button" text="Gestione Globale Pazienti" />
+                <Button maxWidth="Infinity" onAction="#apriGestioneAdmin" styleClass="menu-button-special" text="Gestione Globale Dipendenti" />
+                <Button maxWidth="Infinity" onAction="#apriCreaAmministratore" styleClass="menu-button" text="Crea amministratori" />
 
                 <Separator opacity="0.2" />
 
-                <Label text="SISTEMA" styleClass="menu-section-label" />
-                <Button maxWidth="Infinity" onAction="#apriLogIntegrali" styleClass="menu-button" text="Log di Sistema" />
-                <Button maxWidth="Infinity" onAction="#apriManutenzioneFile" styleClass="menu-button" text="Backup &amp; Ripristino" />
-
                 <Region VBox.vgrow="ALWAYS" />
 
-                <Button maxWidth="Infinity" onAction="#eseguiLogout" styleClass="logout-button" text="LOGOUT SICURO" />
+                <Button maxWidth="Infinity" onAction="#gestisciLogout" styleClass="logout-button" text="LOGOUT"/>
             </children>
             <padding>
                 <Insets bottom="25.0" left="20.0" right="20.0" top="25.0" />

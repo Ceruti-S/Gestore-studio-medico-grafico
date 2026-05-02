@@ -197,7 +197,7 @@ public class InitFileSystem
             Path itDefaultFile = ConfigFile.IT_DIR.resolve("I0.dat");
 
             //non uso Files.createFile(itDefaultFile) perchè lo fa giò scruttura file
-            IT itDefault = new IT("I0", "DEFAULT", "USER", LocalDate.of(2000,1,1), 24, "XX", "N/A", "N/A");
+            IT itDefault = new IT("I0", "DEFAULT", "DEFAULT", LocalDate.of(2000,1,1), 24, "XX", "N/A", "direttore_IT");
 
             //questo scrive data/file/IT/IT_default.dat E data/backup/IT_backup/IT_default.dat
             ScritturaFile.scriviFileCifrato(itDefaultFile, itDefault);

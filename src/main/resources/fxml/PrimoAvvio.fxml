@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="20.0" styleClass="main-home-container" stylesheets="@../css/ITSupport.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studioMedico.GCM.frontend.controller.PrimoAvvioController">
+
+    <padding>
+        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+    </padding>
+
+    <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" styleClass="label-titolo" text="Registrazione Nuovo IT capo - Primo Avvio" />
+
+    <HBox alignment="CENTER" spacing="40.0">
+        <children>
+            <VBox prefWidth="400.0" spacing="15.0">
+                <children>
+                    <Label style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;" text="Dati Profilo IT capo" />
+
+                    <TextField fx:id="nome" promptText="Nome" />
+                    <TextField fx:id="cognome" promptText="Cognome" />
+                    <DatePicker fx:id="dataNascita" maxWidth="Infinity" promptText="Data di nascita" />
+                    <TextField fx:id="codiceFiscale" promptText="Codice Fiscale" />
+
+                    <Label style="-fx-text-fill: #7f8c8d; -fx-font-size: 12px;" text="Titolo di Studio" />
+                    <ComboBox fx:id="titoloStudio" maxWidth="Infinity" promptText="Seleziona Titolo di Studio">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="Diploma di Maturità" />
+                                <String fx:value="Laurea Triennale" />
+                                <String fx:value="Laurea Magistrale" />
+                                <String fx:value="Master" />
+                                <String fx:value="Dottorato" />
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+                </children>
+            </VBox>
+        </children>
+    </HBox>
+
+    <VBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">
+        <Button maxWidth="Infinity" onAction="#gestisciAggiunta" style="-fx-background-color: #2c3e50; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 12; -fx-cursor: hand; -fx-background-radius: 5;" styleClass="btn-conferma" text="REGISTRA NUOVO IT" />
+    </VBox>
+
+</VBox>

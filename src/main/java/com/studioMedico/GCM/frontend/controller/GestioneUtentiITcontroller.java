@@ -1,21 +1,23 @@
 package com.studioMedico.GCM.frontend.controller;
 
+import com.studioMedico.GCM.backend.funzionamento.CreazioneEliminazionePersone;
+import com.studioMedico.GCM.backend.funzionamento.oggettiModello.Paziente;
+import com.studioMedico.GCM.backend.gestioneFile.ConfigFile;
+import com.studioMedico.GCM.backend.gestioneFile.modifica.LetturaFile;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import com.studioMedico.GCM.backend.gestioneFile.ConfigFile;
-import com.studioMedico.GCM.backend.gestioneFile.modifica.LetturaFile;
-import com.studioMedico.GCM.backend.funzionamento.oggettiModello.Paziente;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
-import java.util.stream.Stream;
 import java.util.Comparator;
+import java.util.stream.Stream;
 
-public class ListaPazientiController {
+public class GestioneUtentiITcontroller
+{
 
     @FXML private TableView<Paziente> tabellaPazienti;
     @FXML private TableColumn<Paziente, String> colNome;
@@ -24,27 +26,45 @@ public class ListaPazientiController {
     @FXML private TableColumn<Paziente, String> colTel;
     @FXML private TableColumn<Paziente, String> colCUI;
 
-    private HomeSegretarioController homeController;
-    private HomeMedicoController homeMedico;
-
-    public void mostraRisultatiRicerca(List<Paziente> risultati)
+    @FXML
+    private void eliminaUtente() throws IOException
     {
 
-        tabellaPazienti.setItems(FXCollections.observableArrayList(risultati));
+        Paziente pazienteSelezionato = tabellaPazienti.getSelectionModel().getSelectedItem();
+
+        if(pazienteSelezionato == null)
+        {
+
+            mostraAlert(Alert.AlertType.WARNING, "Selezione mancante",
+                    "Per favore, seleziona un paziente dalla tabella prima di cliccare su Elimina.");
+            return;
+
+        }
+
+        Alert conferma = new Alert(Alert.AlertType.CONFIRMATION);
+        conferma.setTitle("Conferma Eliminazione");
+        conferma.setHeaderText("Stai per eliminare il paziente: " + pazienteSelezionato.getCognome());
+        conferma.setContentText("L'operazione è irreversibile. Vuoi procedere?");
+
+        if(conferma.showAndWait().get() == ButtonType.OK)
+        {
+
+            String cui = pazienteSelezionato.getCUI();
+
+            CreazioneEliminazionePersone.eliminaPaziente(cui);
+
+        }
 
     }
 
-    public void setHomeController(HomeSegretarioController homeController)
+    private void mostraAlert(Alert.AlertType tipo, String titolo, String messaggio)
     {
 
-        this.homeController = homeController;
-
-    }
-
-    public void setHomeController(HomeMedicoController home)
-    {
-
-        this.homeMedico = home;
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titolo);
+        alert.setHeaderText(null);
+        alert.setContentText(messaggio);
+        alert.showAndWait();
 
     }
 
@@ -56,23 +76,8 @@ public class ListaPazientiController {
         colTel.setCellValueFactory(new PropertyValueFactory<>("telefono"));
         colCUI.setCellValueFactory(new PropertyValueFactory<>("CUI"));
 
-        tabellaPazienti.setRowFactory(tv -> {
-            TableRow<Paziente> row = new TableRow<>();
-            row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && (!row.isEmpty())) {
-                    Paziente p = row.getItem();
-
-                    if (homeController != null) {
-                        homeController.caricaSchermata("DettagliPaziente.fxml", p);
-                    }
-                    else if (homeMedico != null) {
-                        homeMedico.caricaSchermata("DettagliPaziente.fxml", p);
-                    }
-                }
-            });
-            return row;
-        });
         caricaDatiPazienti();
+
     }
 
     @FXML
@@ -112,4 +117,5 @@ public class ListaPazientiController {
             alert.showAndWait();
         }
     }
+
 }

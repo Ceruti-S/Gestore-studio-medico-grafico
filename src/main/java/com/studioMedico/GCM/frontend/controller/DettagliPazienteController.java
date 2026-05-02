@@ -18,25 +18,25 @@ public class DettagliPazienteController
 
     @FXML private Text nome, cognome, dataNascita, eta, codiceFiscale, gruppoSanguigno, allergie, patologie, telefono, indirizzo;
 
-    @FXML private TableView<VoceTabella> tabellaStoricoVisite;
-    @FXML private TableColumn<VoceTabella, String> colCuiSVisite, colDataSVisite;
+    @FXML private TableView<VoceVisitaStorico> tabellaStoricoVisite;
+    @FXML private TableColumn<VoceVisitaStorico, String> colCuiSVisite, colDataSVisite, colDiagnosiSVisite, colNoteSVisite;
 
-    @FXML private TableView<VoceTabella> tabellaStoricoEsami;
-    @FXML private TableColumn<VoceTabella, String> colCuiSEsami, colDataSEsami;
+    @FXML private TableView<VoceEsameStorico> tabellaStoricoEsami;
+    @FXML private TableColumn<VoceEsameStorico, String> colCuiSEsami, colDataSEsami, colRisultatoSEsami, colNoteSEsami;
 
-    @FXML private TableView<VoceTabella> tabellaPrenotazioniVisite;
-    @FXML private TableColumn<VoceTabella, String> colCuiPVisite, colDataPVisite;
+    @FXML private TableView<VoceVisitaPrenotata> tabellaPrenotazioniVisite;
+    @FXML private TableColumn<VoceVisitaPrenotata, String> colCuiPVisite, colDataPVisite, colMotivoPVisite, colNotePVisite;
 
-    @FXML private TableView<VoceTabella> tabellaPrenotazioniEsami;
-    @FXML private TableColumn<VoceTabella, String> colCuiPEsami, colDataPEsami;
+    @FXML private TableView<VoceEsamePrenotato> tabellaPrenotazioniEsami;
+    @FXML private TableColumn<VoceEsamePrenotato, String> colCuiPEsami, colDataPEsami, colNotePEsami;
 
-    @FXML private TableView<VoceTabella> tabellaPrenotazioniTerapie;
-    @FXML private TableColumn<VoceTabella, String> colCuiPTerapie, colDataPTerapie;
+    @FXML private TableView<VoceTerapia> tabellaPrenotazioniTerapie;
+    @FXML private TableColumn<VoceTerapia, String> colCuiPTerapie, colDataPTerapie, colDosaggioPTerapie, colFrequenzaPTerapie;
 
     public void inizializzaDati(Paziente p)
     {
 
-        if (p != null)
+        if(p != null)
         {
 
             nome.setText("Nome: " + p.getNome());
@@ -50,144 +50,179 @@ public class DettagliPazienteController
             telefono.setText("Numero di telefono: " + p.getTelefono());
             indirizzo.setText("Indirizzo: " + p.getIndirizzo());
 
-            configuraColonne(colCuiSVisite, colDataSVisite);
-            configuraColonne(colCuiSEsami, colDataSEsami);
-            configuraColonne(colCuiPVisite, colDataPVisite);
-            configuraColonne(colCuiPEsami, colDataPEsami);
-            configuraColonne(colCuiPTerapie, colDataPTerapie);
+            configuraColonne();
 
-            configuraDoppioClick(tabellaStoricoVisite, "STORICO_VISITA");
-            configuraDoppioClick(tabellaStoricoEsami, "STORICO_ESAME");
-            configuraDoppioClick(tabellaPrenotazioniVisite, "PRENOTAZIONE_VISITA");
-            configuraDoppioClick(tabellaPrenotazioniEsami, "PRENOTAZIONE_ESAME");
-            configuraDoppioClick(tabellaPrenotazioniTerapie, "PRENOTAZIONE_TERAPIA");
-
-            //recupero le liste dal backend
-            List<Visita> storicoVisite = p.getVisite();
-            List<Visita> visitePrenotate = p.getVisitePrenotate();
-            List<Esame> storicoEsami = p.getEsami();
-            List<Esame> esamiPrenotati = p.getEsamiPrenotati();
-            List<Terapia> terapie = p.getTerapie(); //entrambe, sia storico sia in corso
-
-            //trasformo le liste in dati utilizzabili dalla tabella
-            ObservableList<VoceTabella> datiStoricoVisite = FXCollections.observableArrayList();
-            for (Visita v : storicoVisite)
-            {
-
-                datiStoricoVisite.add(new VoceTabella(v.getCUIvisita(), v.getDataOraVisita().toString()));
-
-            }
-            ObservableList<VoceTabella> datiVisite = FXCollections.observableArrayList();
-            for (Visita v : visitePrenotate)
-            {
-
-                datiVisite.add(new VoceTabella(v.getCUIvisita(), v.getDataOraVisita().toString()));
-
-            }
-
-            ObservableList<VoceTabella> datiStoricoEsami = FXCollections.observableArrayList();
-            for (Esame e :storicoEsami)
-            {
-
-                datiStoricoEsami.add(new VoceTabella(e.getCUIesame(), e.getDataOraEsame().toString()));
-
-            }
-            ObservableList<VoceTabella> datiEsami = FXCollections.observableArrayList();
-            for (Esame e : esamiPrenotati)
-            {
-
-                datiEsami.add(new VoceTabella(e.getCUIesame(), e.getDataOraEsame().toString()));
-
-            }
-
-            ObservableList<VoceTabella> datiTerapie = FXCollections.observableArrayList();
-            for (Terapia t : terapie)
-            {
-
-                datiTerapie.add(new VoceTabella(t.getCUIterapia(), t.getDataFine().toString()));
-
-            }
-
-            //metto i dati nella tabella
-            tabellaStoricoVisite.setItems(datiStoricoVisite);
-            tabellaPrenotazioniVisite.setItems(datiVisite);
-            tabellaStoricoEsami.setItems(datiStoricoEsami);
-            tabellaPrenotazioniEsami.setItems(datiEsami);
-            tabellaPrenotazioniTerapie.setItems(datiTerapie);
+            popolaTabelle(p);
 
         }
 
     }
 
-    private void configuraColonne(TableColumn<VoceTabella, String> colCui, TableColumn<VoceTabella, String> colData)
+    private void configuraColonne()
     {
 
-        colCui.setCellValueFactory(new PropertyValueFactory<>("cui"));
-        colData.setCellValueFactory(new PropertyValueFactory<>("data"));
+        colCuiSVisite.setCellValueFactory(new PropertyValueFactory<>("cui"));
+        colDataSVisite.setCellValueFactory(new PropertyValueFactory<>("data"));
+        colDiagnosiSVisite.setCellValueFactory(new PropertyValueFactory<>("diagnosi"));
+        colNoteSVisite.setCellValueFactory(new PropertyValueFactory<>("note"));
+
+        colCuiSEsami.setCellValueFactory(new PropertyValueFactory<>("cui"));
+        colDataSEsami.setCellValueFactory(new PropertyValueFactory<>("data"));
+        colRisultatoSEsami.setCellValueFactory(new PropertyValueFactory<>("risultato"));
+        colNoteSEsami.setCellValueFactory(new PropertyValueFactory<>("note"));
+
+        colCuiPVisite.setCellValueFactory(new PropertyValueFactory<>("cui"));
+        colDataPVisite.setCellValueFactory(new PropertyValueFactory<>("data"));
+        colMotivoPVisite.setCellValueFactory(new PropertyValueFactory<>("motivo"));
+        colNotePVisite.setCellValueFactory(new PropertyValueFactory<>("note"));
+
+        colCuiPEsami.setCellValueFactory(new PropertyValueFactory<>("cui"));
+        colDataPEsami.setCellValueFactory(new PropertyValueFactory<>("data"));
+        colNotePEsami.setCellValueFactory(new PropertyValueFactory<>("note"));
+
+        colCuiPTerapie.setCellValueFactory(new PropertyValueFactory<>("cui"));
+        colDataPTerapie.setCellValueFactory(new PropertyValueFactory<>("data"));
+        colDosaggioPTerapie.setCellValueFactory(new PropertyValueFactory<>("dosaggio"));
+        colFrequenzaPTerapie.setCellValueFactory(new PropertyValueFactory<>("frequenza"));
 
     }
 
-    private void configuraDoppioClick(TableView<VoceTabella> tabella, String tipoModulo)
+    private void popolaTabelle(Paziente p)
     {
 
-        tabella.setRowFactory(tv ->
+        ObservableList<VoceVisitaStorico> datiStoricoVisite = FXCollections.observableArrayList();
+        for(Visita v : p.getVisite())
         {
 
-            TableRow<VoceTabella> row = new TableRow<>();
-            row.setOnMouseClicked(event ->
-            {
+            datiStoricoVisite.add(new VoceVisitaStorico(v.getCUIvisita(), v.getDataOraVisita().toString(), v.getDiagnosi(), v.getNote()));
 
-                if (event.getClickCount() == 2 && (!row.isEmpty()))
-                {
+        }
+        tabellaStoricoVisite.setItems(datiStoricoVisite);
 
-                    VoceTabella voce = row.getItem();
-                    gestisciDettaglioSpecifico(voce.getCui(), tipoModulo);
 
-                }
-
-            });
-
-            return row;
-
-        });
-
-    }
-
-    private void gestisciDettaglioSpecifico(String cui, String tipoModulo)
-    {
-
-        System.out.println("Apertura modulo [" + tipoModulo + "] per CUI: " + cui);
-        // Switch per caricare il giusto FXML di dettaglio in base al prefisso o al tipoModulo
-        switch (tipoModulo)
+        ObservableList<VoceEsameStorico> datiStoricoEsami = FXCollections.observableArrayList();
+        for(Esame e : p.getEsami())
         {
 
-            case "STORICO_VISITA" -> System.out.println("Caricamento referto visita...");
-            case "PRENOTAZIONE_VISITA" -> System.out.println("Caricamento prenotazione...");
-            // ... eccetera //TODO:implementare apertura dettagli
+            datiStoricoEsami.add(new VoceEsameStorico(e.getCUIesame(), e.getDataOraEsame().toString(), e.getRisultato(), e.getNote()));
+
+        }
+        tabellaStoricoEsami.setItems(datiStoricoEsami);
+
+
+        ObservableList<VoceVisitaPrenotata> datiVisitePrenotate = FXCollections.observableArrayList();
+        for(Visita v : p.getVisitePrenotate())
+        {
+
+            datiVisitePrenotate.add(new VoceVisitaPrenotata(v.getCUIvisita(), v.getDataOraVisita().toString(), v.getMotivo(), v.getNote()));
+
+        }
+        tabellaPrenotazioniVisite.setItems(datiVisitePrenotate);
+
+        ObservableList<VoceEsamePrenotato> datiEsamiPrenotati = FXCollections.observableArrayList();
+        for(Esame e : p.getEsamiPrenotati())
+        {
+
+            datiEsamiPrenotati.add(new VoceEsamePrenotato(e.getCUIesame(), e.getDataOraEsame().toString(), e.getNote()));
+
+        }
+        tabellaPrenotazioniEsami.setItems(datiEsamiPrenotati);
+
+        ObservableList<VoceTerapia> datiTerapie = FXCollections.observableArrayList();
+        for(Terapia t : p.getTerapie())
+        {
+
+            datiTerapie.add(new VoceTerapia(t.getCUIterapia(), t.getDataFine().toString(), t.getDosaggio(), t.getFrequenza()));
+
         }
 
+        tabellaPrenotazioniTerapie.setItems(datiTerapie);
+
     }
 
-    /**
-     * Classe di supporto per rappresentare una riga nelle mini-tabelle.
-     * Deve avere i getter pubblici per PropertyValueFactory.
-     */
-    public static class VoceTabella
+    public static class VoceVisitaStorico
     {
 
-        private final String cui;
-        private final String data;
-
-        public VoceTabella(String cui, String data)
+        private final String cui, data, diagnosi, note;
+        public VoceVisitaStorico(String cui, String data, String diagnosi, String note)
         {
 
-            this.cui = cui;
-            this.data = data;
+            this.cui = cui; this.data = data; this.diagnosi = diagnosi; this.note = note;
+
+        }
+        public String getCui() { return cui; }
+        public String getData() { return data; }
+        public String getDiagnosi() { return diagnosi; }
+        public String getNote() { return note; }
+
+    }
+
+    public static class VoceEsameStorico
+    {
+
+        private final String cui, data, risultato, note;
+        public VoceEsameStorico(String cui, String data, String risultato, String note)
+        {
+
+            this.cui = cui; this.data = data; this.risultato = risultato; this.note = note;
+
+        }
+        public String getCui() { return cui; }
+        public String getData() { return data; }
+        public String getRisultato() { return risultato; }
+        public String getNote() { return note; }
+
+    }
+
+    public static class VoceVisitaPrenotata
+    {
+
+        private final String cui, data, motivo, note;
+        public VoceVisitaPrenotata(String cui, String data, String motivo, String note)
+        {
+
+            this.cui = cui; this.data = data; this.motivo = motivo; this.note = note;
+
+        }
+        public String getCui() { return cui; }
+        public String getData() { return data; }
+        public String getMotivo() { return motivo; }
+        public String getNote() { return note; }
+
+    }
+
+    public static class VoceEsamePrenotato
+    {
+
+        private final String cui, data, note;
+        public VoceEsamePrenotato(String cui, String data, String note)
+        {
+
+            this.cui = cui; this.data = data; this.note = note;
+
+        }
+        public String getCui() { return cui; }
+        public String getData() { return data; }
+        public String getNote() { return note; }
+
+    }
+
+    public static class VoceTerapia
+    {
+
+        private final String cui, data, dosaggio, frequenza;
+        public VoceTerapia(String cui, String data, String dosaggio, String frequenza)
+        {
+
+            this.cui = cui; this.data = data; this.dosaggio = dosaggio; this.frequenza = frequenza;
 
         }
 
         public String getCui() { return cui; }
         public String getData() { return data; }
+        public String getDosaggio() { return dosaggio; }
+        public String getFrequenza() { return frequenza; }
 
     }
+
 }

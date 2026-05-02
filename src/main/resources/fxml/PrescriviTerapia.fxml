@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="25.0" styleClass="main-home-container"
+      stylesheets="@../css/FunzionalitàSegretario.css"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.studioMedico.GCM.frontend.controller.PrescriviTerapiaController">
+
+    <padding>
+        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+    </padding>
+
+    <children>
+        <Label styleClass="label-titolo" text="Prescrizione Nuova Terapia Farmacologica"
+               style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+
+        <VBox maxWidth="600.0" spacing="20.0">
+            <children>
+
+                <VBox spacing="5.0">
+                    <children>
+                        <Label styleClass="label-campo" text="CUI Paziente:" />
+                        <TextField fx:id="txtCuiPaziente" promptText="Inserisci CUI del paziente (es. P1)..." />
+                    </children>
+                </VBox>
+
+                <VBox spacing="5.0">
+                    <children>
+                        <Label styleClass="label-campo" text="Nome Farmaco:" />
+                        <TextField fx:id="txtNomeFarmaco" promptText="es. Tachipirina, Augmentin..." />
+                    </children>
+                </VBox>
+
+                <HBox spacing="20.0">
+                    <children>
+                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="label-campo" text="Dosaggio:" />
+                                <TextField fx:id="txtDosaggio" promptText="es. 500mg, 1 compressa..." />
+                            </children>
+                        </VBox>
+                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="label-campo" text="Frequenza:" />
+                                <TextField fx:id="txtFrequenza" promptText="es. 2 volte al dì, ogni 8 ore..." />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <HBox spacing="20.0">
+                    <children>
+                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="label-campo" text="Data Inizio:" />
+                                <DatePicker fx:id="dpDataInizio" maxWidth="Infinity" />
+                            </children>
+                        </VBox>
+                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="label-campo" text="Data Fine:" />
+                                <DatePicker fx:id="dpDataFine" maxWidth="Infinity" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <Region prefHeight="10.0" />
+
+                <Button maxWidth="Infinity" styleClass="action-button" text="CONFERMA E PRESCRIVI TERAPIA"
+                        style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 12; -fx-cursor: hand;"
+                        onAction="#gestisciPrescrizioneTerapia"/>
+            </children>
+        </VBox>
+    </children>
+</VBox>

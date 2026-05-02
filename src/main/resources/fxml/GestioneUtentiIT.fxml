@@ -10,6 +10,7 @@
       stylesheets="@../css/ITSupport.css"
       xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.studioMedico.GCM.frontend.controller.GestioneUtentiITcontroller"
 >
 
     <padding>
@@ -20,7 +21,7 @@
         <children>
             <VBox>
                 <Label styleClass="page-title" text="Controllo Accessi Totale" />
-                <Label text="Creazione e revoca permessi per Staff, Medici e Amministratori" style="-fx-text-fill: #7f8c8d;" />
+                <Label text="Eliminazione di pazienti" style="-fx-text-fill: #7f8c8d;" />
             </VBox>
         </children>
     </HBox>
@@ -28,49 +29,25 @@
     <HBox spacing="30.0" VBox.vgrow="ALWAYS">
         <children>
             <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Button text="Aggiorna Lista" onAction="#caricaDatiPazienti" />
+                </HBox>
                 <children>
-                    <TableView fx:id="tabellaGlobale" VBox.vgrow="ALWAYS">
+                    <TableView fx:id="tabellaPazienti" VBox.vgrow="ALWAYS">
                         <columns>
-                            <TableColumn fx:id="colCui" prefWidth="70.0" text="CUI" />
-                            <TableColumn fx:id="colRuolo" prefWidth="110.0" text="Ruolo" />
-                            <TableColumn fx:id="colNome" prefWidth="130.0" text="Nome" />
-                            <TableColumn fx:id="colCognome" prefWidth="130.0" text="Cognome" />
-                            <TableColumn fx:id="colStato" prefWidth="90.0" text="Stato" />
+                            <TableColumn fx:id="colCUI" text="CUI" prefWidth="50" />
+                            <TableColumn fx:id="colNome" text="Nome" prefWidth="150" />
+                            <TableColumn fx:id="colCognome" text="Cognome" prefWidth="150" />
+                            <TableColumn fx:id="colCF" text="Codice Fiscale" prefWidth="200" />
+                            <TableColumn fx:id="colTel" text="Telefono" prefWidth="150" />
+                            <TableColumn fx:id="colAllergie" text="Allergie" prefWidth="150" />
+                            <TableColumn fx:id="colPatologie" text="Patologie" prefWidth="150" />
                         </columns>
+                        <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
                     </TableView>
                     <HBox spacing="10">
-                        <Button maxWidth="Infinity" HBox.hgrow="ALWAYS" onAction="#resetPassword" styleClass="btn-warning" text="RESET PASSWORD" />
                         <Button maxWidth="Infinity" HBox.hgrow="ALWAYS" onAction="#eliminaUtente" styleClass="btn-danger" text="ELIMINA ACCOUNT" />
                     </HBox>
-                </children>
-            </VBox>
-
-            <VBox prefWidth="350.0" spacing="15.0" styleClass="form-container-it">
-                <children>
-                    <Label styleClass="form-title" text="Nuovo Nodo Utente" />
-
-                    <TextField fx:id="nomeField" promptText="Nome" />
-                    <TextField fx:id="cognomeField" promptText="Cognome" />
-                    <PasswordField fx:id="passField" promptText="Master Password" />
-
-                    <Label text="Assegna Privilegi:" styleClass="section-label" />
-                    <ComboBox fx:id="ruoloCombo" maxWidth="Infinity" promptText="Seleziona Ruolo">
-                        <items>
-                            <FXCollections fx:factory="observableArrayList">
-                                <String fx:value="Amministratore" />
-                                <String fx:value="Medico" />
-                                <String fx:value="Segretario" />
-                                <String fx:value="IT Support" />
-                            </FXCollections>
-                        </items>
-                    </ComboBox>
-
-                    <Separator />
-                    <Label text="Note di Sistema:" styleClass="section-label" />
-                    <TextArea fx:id="noteIT" prefHeight="80.0" promptText="Motivo della creazione..." wrapText="true" />
-
-                    <Region VBox.vgrow="ALWAYS" />
-                    <Button maxWidth="Infinity" onAction="#creaUtente" styleClass="btn-it-save" text="GENERA UTENTE" />
                 </children>
             </VBox>
         </children>

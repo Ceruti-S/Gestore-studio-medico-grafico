@@ -2,16 +2,19 @@ package com.studioMedico.GCM.backend.funzionamento;
 
 import com.studioMedico.GCM.backend.funzionamento.oggettiModello.*;
 import com.studioMedico.GCM.backend.gestioneFile.ConfigFile;
+import com.studioMedico.GCM.backend.gestioneFile.crittografia.PasswordUtils;
 import com.studioMedico.GCM.backend.gestioneFile.modifica.CreazioneEliminazioneFile;
 import com.studioMedico.GCM.backend.gestioneFile.modifica.LetturaFile;
 import com.studioMedico.GCM.backend.gestioneFile.modifica.ScritturaFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Map;
 
 public class CreazioneEliminazionePersone
 {
@@ -165,11 +168,16 @@ public class CreazioneEliminazionePersone
 
         ScritturaFile.scriviFileCifrato(pathCompleto, amministratore);
 
+        String username = cuiEstratto + "_" + cognome;
+        String passwordHash = PasswordUtils.hashPassword("defaultPassword");
+
+        ScritturaFile.aggiungiCredenziali(username, passwordHash);
+
         return true;
 
     }
 
-    public static boolean creaSegretario(String nome, String cognome, String turnoLavoro, LocalDate dataNascita, String codiceFiscale) throws IOException
+    public static boolean creaSegretario(String nome, String cognome, LocalDate dataNascita, String codiceFiscale) throws IOException
     {
 
         if(!ValidatoreDati.isCodiceFiscaleValido(codiceFiscale))
@@ -212,7 +220,6 @@ public class CreazioneEliminazionePersone
         segretario.setCognome(cognome);
         segretario.setDataNascita(dataNascita);
         segretario.setCodiceFiscale(codiceFiscale);
-        segretario.setTurnoLavoro(turnoLavoro);
         segretario.setEta();
         segretario.setCUI(cuiEstratto);
 
@@ -223,6 +230,11 @@ public class CreazioneEliminazionePersone
         Path pathCompleto = ConfigFile.SEGRETARI_DIR.resolve(nomeFileFinale);
 
         ScritturaFile.scriviFileCifrato(pathCompleto, segretario);
+
+        String username = cuiEstratto + "_" + cognome;
+        String passwordHash = PasswordUtils.hashPassword("defaultPassword");
+
+        ScritturaFile.aggiungiCredenziali(username, passwordHash);
 
         return true;
 
@@ -278,6 +290,11 @@ public class CreazioneEliminazionePersone
         Path pathCompleto = ConfigFile.MEDICI_DIR.resolve(nomeFileFinale);
 
         ScritturaFile.scriviFileCifrato(pathCompleto, medico);
+
+        String username = cuiEstratto + "_" + cognome;
+        String passwordHash = PasswordUtils.hashPassword("defaultPassword");
+
+        ScritturaFile.aggiungiCredenziali(username, passwordHash);
 
         return true;
 
@@ -352,6 +369,11 @@ public class CreazioneEliminazionePersone
 
         ScritturaFile.scriviFileCifrato(pathCompleto, it);
 
+        String username = cuiEstratto + "_" + cognome;
+        String passwordHash = PasswordUtils.hashPassword("defaultPassword");
+
+        ScritturaFile.aggiungiCredenziali(username, passwordHash);
+
         return true;
 
     }
@@ -378,7 +400,14 @@ public class CreazioneEliminazionePersone
 
         Path file = ConfigFile.MEDICI_DIR.resolve(CUI + ".dat");
 
+        Medico temp = LetturaFile.leggiFileCifrato(file);
+
+        String username;
+        username = CUI + "_" + temp.getCognome();
+
         CreazioneEliminazioneFile.eliminaFile(file);
+
+        ScritturaFile.rimuoviCredenziali(username);
 
         return true;
 
@@ -392,7 +421,14 @@ public class CreazioneEliminazionePersone
 
         Path file = ConfigFile.SEGRETARI_DIR.resolve(CUI + ".dat");
 
+        Segretario temp = LetturaFile.leggiFileCifrato(file);
+
+        String username;
+        username = CUI + "_" + temp.getCognome();
+
         CreazioneEliminazioneFile.eliminaFile(file);
+
+        ScritturaFile.rimuoviCredenziali(username);
 
         return true;
 
@@ -410,7 +446,14 @@ public class CreazioneEliminazionePersone
 
         Path file = ConfigFile.AMMINISTRATORI_DIR.resolve(CUI + ".dat");
 
+        Amministratore temp = LetturaFile.leggiFileCifrato(file);
+
+        String username;
+        username = CUI + "_" + temp.getCognome();
+
         CreazioneEliminazioneFile.eliminaFile(file);
+
+        ScritturaFile.rimuoviCredenziali(username);
 
         return true;
 
@@ -422,25 +465,37 @@ public class CreazioneEliminazionePersone
         if(ControlloLogin.utenteAttivo.charAt(0)=='S' || ControlloLogin.utenteAttivo.charAt(0)=='M' || ControlloLogin.utenteAttivo.charAt(0)=='A')
             return false;
 
-        //non ci si può eliminare da soli
-        if(CUI.equals(ControlloLogin.utenteAttivo))
+        if(CUI.equals(ControlloLogin.utenteAttivo) && !CUI.equals("I0"))
             return false;
 
         String CUIutenteAttivo = ControlloLogin.utenteAttivo;
-        //costruisco il nome del file completo
-        String nomeFileFinale = CUIutenteAttivo + ".dat";
+        Path pathAttivo = ConfigFile.IT_DIR.resolve(CUIutenteAttivo + ".dat");
+        IT itAttivo = LetturaFile.leggiFileCifrato(pathAttivo);
 
-        //unisco la cartella degli IT con il nome del file per ottenere il PATH COMPLETO
-        java.nio.file.Path pathCompletoIT = ConfigFile.IT_DIR.resolve(nomeFileFinale);
-
-        IT it = LetturaFile.leggiFileCifrato(pathCompletoIT);
-
-        if(it.getGradoReparto().equals("impiegato"))
+        if(itAttivo.getGradoReparto().equals("impiegato"))
             return false;
 
-        Path file = ConfigFile.IT_DIR.resolve(CUI + ".dat");
+        Path fileDaEliminare = ConfigFile.IT_DIR.resolve(CUI + ".dat");
 
-        CreazioneEliminazioneFile.eliminaFile(file);
+        IT temp = LetturaFile.leggiFileCifrato(fileDaEliminare);
+
+        String username;
+        if(CUI.equals("I0"))
+        {
+
+            username = "I0_default";
+
+        }
+        else
+        {
+
+            username = CUI + "_" + temp.getCognome();
+
+        }
+
+        CreazioneEliminazioneFile.eliminaFile(fileDaEliminare);
+
+        ScritturaFile.rimuoviCredenziali(username);
 
         return true;
 

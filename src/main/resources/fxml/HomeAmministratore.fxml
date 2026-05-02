@@ -13,6 +13,7 @@
             stylesheets="@../css/Amministratore.css"
             xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.studioMedico.GCM.frontend.controller.HomeAmministratoreController"
 >
 
     <left>
@@ -29,7 +30,9 @@
 
                 <Button maxWidth="Infinity" onAction="#apriGestioneStaff" styleClass="menu-button" text="Dashboard Staff" />
                 <Button maxWidth="Infinity" onAction="#apriGestionePazienti" styleClass="menu-button" text="Anagrafica Pazienti" />
-                <Button maxWidth="Infinity" onAction="#apriLog" styleClass="menu-button" text="Registro Attività (Log)" />
+                <Button maxWidth="Infinity" onAction="#apriCreazioneIT" styleClass="menu-button" text="Crea impiegato IT" />
+                <Button maxWidth="Infinity" onAction="#apriCreazioneMedici" styleClass="menu-button" text="Crea impiegato Medico" />
+                <Button maxWidth="Infinity" onAction="#apriCreazioneSegretari" styleClass="menu-button" text="Crea impiegato Segretario" />
 
                 <Region VBox.vgrow="ALWAYS" />
 

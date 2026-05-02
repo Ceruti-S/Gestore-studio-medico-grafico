@@ -21,24 +21,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-//TODO: finire gli altri todo + implementare agenda studio + tutte le altre schermate
-
 public class HomeSegretarioController {
 
     @FXML private Label lblNomeUtente;
     @FXML private TextField txtRicercaRapida;
     @FXML private StackPane contentArea;
 
-    /**
-     * Inizializzazione: imposta l'ID dell'utente loggato nell'header.
-     */
     @FXML
-    public void initialize() {
-        if (ControlloLogin.utenteAttivo != null) {
+    public void initialize()
+    {
+
+        if(ControlloLogin.utenteAttivo != null)
+        {
+
             lblNomeUtente.setText(ControlloLogin.utenteAttivo);
-        } else {
-            lblNomeUtente.setText("GUEST_USER");
+
         }
+        else
+        {
+
+            lblNomeUtente.setText("GUEST_USER");
+
+        }
+
     }
 
     @FXML
@@ -184,62 +189,73 @@ public class HomeSegretarioController {
 
     }
 
-    /**
-     * LOGICA LOGOUT (Gestita direttamente qui)
-     * Chiude la sessione e la finestra attuale.
-     */
     @FXML
     private void gestisciLogout() {
         System.out.println("Esecuzione Logout per l'utente: " + ControlloLogin.utenteAttivo);
 
-        // 1. Resetta la sessione nel backend
+        //resetta la sessione nel backend
         ControlloLogin.utenteAttivo = null;
 
-        // 2. Recupera lo Stage attuale e chiudilo
+        //recupera lo Stage attuale e chiude
         Stage currentStage = (Stage) lblNomeUtente.getScene().getWindow();
         currentStage.close();
 
-        // 3. Rilancia la schermata di login
-        try {
+        //rilancia la schermata di login
+        try
+        {
 
             MainClass.lancioIniziale(new Stage());
 
             System.out.println("Programma riportato alla schermata di Login.");
-        } catch (Exception e) {
-            e.printStackTrace();
+
         }
+        catch(Exception e)
+        {
+
+            e.printStackTrace();
+
+        }
+
     }
 
-    /**
-     * MOTORE DI NAVIGAZIONE INTERNA
-     * Carica i file FXML delle varie sezioni nel centro della finestra.
-     */
-    public void caricaSchermata(String fxmlFile, Paziente paziente) {
-        try {
+    public void caricaSchermata(String fxmlFile, Paziente paziente)
+    {
+
+        try
+        {
+
             contentArea.getChildren().clear();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/" + fxmlFile));
             Parent root = loader.load();
 
             Object controller = loader.getController();
 
-            // SE stiamo aprendo la lista, passiamo "this" (HomeSegretarioController)
-            if (controller instanceof ListaPazientiController) {
+            if(controller instanceof ListaPazientiController)
+            {
+
                 ((ListaPazientiController) controller).setHomeController(this);
+
             }
-            // SE stiamo aprendo i dettagli, passiamo il paziente
-            else if (controller instanceof DettagliPazienteController && paziente != null) {
+            else if(controller instanceof DettagliPazienteController && paziente != null)
+            {
+
                 ((DettagliPazienteController) controller).inizializzaDati(paziente);
+
             }
 
             contentArea.getChildren().add(root);
 
-        } catch (IOException e) {
+        }
+        catch(IOException e)
+        {
+
             System.err.println("Errore caricamento modulo: " + fxmlFile);
             e.printStackTrace();
+
         }
+
     }
 
-    // --- PULSANTI BARRA LATERALE ---
     @FXML private void gestisciAperturaListaPazienti() { caricaSchermata("ListaPazienti.fxml", null); }
 
     @FXML private void gestisciAperturaAggiungiPaziente() { caricaSchermata("AggiungiPaziente.fxml", null); }
@@ -249,9 +265,5 @@ public class HomeSegretarioController {
     @FXML private void gestisciAperturaPrenotaEsame() { caricaSchermata("PrenotaEsame.fxml", null); }
 
     @FXML private void gestisciAperturaModificaPaziente() { caricaSchermata("ModificaPaziente.fxml", null); }
-
-    @FXML private void gestisciAperturaModificaPrenotazione() { caricaSchermata("ModificaPrenotazione.fxml", null); }
-
-    @FXML private void gestisciAperturaAgenda() { caricaSchermata("AgendaStudio.fxml", null); }
 
 }
