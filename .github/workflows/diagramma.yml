@@ -1,0 +1,32 @@
+name: Generate Project Diagram
+on: 
+  push:
+    branches: [ main, master ]
+
+permissions:
+  contents: write
+
+jobs:
+  draw:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Create Docs Folder
+        run: mkdir -p docs
+
+      - name: Generate Mermaid Diagram
+        uses: sjwall/mdg@v1.1.0
+        with:
+          path: 'src'
+          output: 'docs/diagramma.md'
+
+      - name: Commit and Push
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/diagramma.md
+          # Il comando || exit 0 evita che la Action fallisca se non ci sono modifiche
+          git commit -m "docs: aggiornamento automatico diagramma (Java + FXML)" || exit 0
+          git push
